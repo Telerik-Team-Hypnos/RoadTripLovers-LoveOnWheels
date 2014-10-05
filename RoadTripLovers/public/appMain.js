@@ -11,7 +11,7 @@ appMain.constant("appSettings", {
 appMain.config(function ($routeProvider, appSettings) {
 
     $routeProvider.when("/home", {
-        controller: "HomeController",
+        controller: "PageController",
         templateUrl: "/partials/home/home"
     });
 
