@@ -17,4 +17,6 @@ module.exports = function(config) {
     db.on('error', function(err){
         console.log('Database error: ' + err);
     });
+
+    user.seedInitialUsers();
 };

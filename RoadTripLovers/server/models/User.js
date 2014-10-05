@@ -24,3 +24,33 @@ userSchema.method({
 });
 
 var User = mongoose.model('User', userSchema);
+
+module.exports.seedInitialUsers = function() {
+    User.find({}).exec(function(err, collection) {
+        if (err) {
+            console.log('Cannot find users: ' + err);
+            return;
+        }
+
+//        User.remove({}, function(err) {
+//            console.log('collection removed')
+//        });
+
+        if (collection.length === 0) {
+            var salt;
+            var hashedPwd;
+
+            salt = encryption.generateSalt();
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+
+            User.create({
+                username: 'superlover69',
+                salt: salt,
+                hashPass: hashedPwd,
+                roles: ['admin']
+            });
+
+            console.log('Users added to database...');
+        }
+    });
+};

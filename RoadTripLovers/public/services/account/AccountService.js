@@ -4,7 +4,8 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
 
     var authenticationData = {
         isAuth: false,
-        userName: ""
+        username: "",
+        roles: []
     };
 
     function registerUser(registration) {
@@ -18,11 +19,13 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
             .then(function (response) {
                 if(response.success){
                     localStorageService.set('authorizationData', {
-                        userName: user.username
+                        username: user.username,
+                        roles: response.user.roles
                     });
 
                     authenticationData.isAuth = true;
-                    authenticationData.userName = user.username;
+                    authenticationData.username = user.username;
+                    authenticationData.roles = response.user.roles;
 
                     deferred.resolve(response);
                 }else{
@@ -50,6 +53,7 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         if (identityData) {
             authenticationData.isAuth = true;
             authenticationData.username = identityData.username;
+            authenticationData.roles = identityData.roles;
         }
     }
 
@@ -58,6 +62,11 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
 
         authenticationData.isAuth = false;
         authenticationData.username = "";
+        authenticationData.roles = [];
+    }
+
+    function checkRole(role){
+        return authenticationData.roles.indexOf(role) > -1;
     }
 
     return {
@@ -65,6 +74,7 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         loginUser: loginUser,
         logOutUser: logOutUser,
         checkIdentity: checkIdentity,
-        userData: authenticationData
+        userData: authenticationData,
+        checkRole: checkRole
     };
 });

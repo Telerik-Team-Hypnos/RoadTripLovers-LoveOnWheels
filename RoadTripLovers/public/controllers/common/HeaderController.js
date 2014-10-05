@@ -9,5 +9,6 @@ appMain.controller('HeaderController', function ($scope, $location, AccountServi
     };
 
     $scope.userData = AccountService.userData;
-    console.log($scope.userData);
+
+    $scope.checkRole = AccountService.checkRole;
 });
