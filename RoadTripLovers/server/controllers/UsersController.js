@@ -3,9 +3,11 @@ var User = require('mongoose').model('User');
 
 module.exports = {
     createUser: function(req, res, next) {
-        var newUserData = req.body;
+        var newUserData = new User({username: req.body.username});
+
         newUserData.salt = encryption.generateSalt();
-        newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+        newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, req.body.password);
+
         User.create(newUserData, function(err, user) {
             if (err) {
                 console.log('Failed to register new user: ' + err);
@@ -16,7 +18,7 @@ module.exports = {
                 if (err) {
                     res.status(400);
                     return res.send({reason: err.toString()});
-                };
+                }
 
                 res.send(user);
             })
@@ -47,4 +49,4 @@ module.exports = {
             res.send(collection);
         })
     }
-}
+};

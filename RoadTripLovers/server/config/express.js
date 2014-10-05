@@ -1,5 +1,3 @@
-'use strict';
-
 var express = require('express'),
     stylus = require('stylus'),
     bodyParser = require('body-parser'),
@@ -10,12 +8,10 @@ var express = require('express'),
     passport = require('passport');
 
 module.exports = function(app, config) {
-    app.set('port', process.env.PORT || config.port);
-
-    app.set('views', config.rootPath + '/server/views');
     app.set('view engine', 'jade');
+    app.set('views', config.rootPath + '/server/views');
 
-    app.use(favicon(config.rootPath + '/public/img/favicon.png'));
+    app.use(favicon(config.rootPath + '/public/content/img/favicon.png'));
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,13 +24,14 @@ module.exports = function(app, config) {
         resave: true
     }));
 
-    app.use(stylus.middleware({
-        src: config.rootPath + '/public',
-        compile: function (str, path) {
-            return stylus(str).set('filename', path);
+    app.use(stylus.middleware(
+        {
+            src: config.rootPath + '/public',
+            compile: function(str, path) {
+                return stylus(str).set('filename', path);
+            }
         }
-    }));
-
+    ));
     app.use(passport.initialize());
     app.use(passport.session());
 

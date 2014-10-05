@@ -1,0 +1,18 @@
+.navbar.navbar-inverse
+    .container
+        .navbar-header
+            a.navbar-brand(href="#/") Simple Blog System
+            ul.nav.navbar-nav
+                li(ng-show="userData.isAuth")
+                    a(href="#/Add Article") Add Article
+
+        .collapse.navbar-collapse(data-collapse='!navbarExpanded')
+            ul.nav.navbar-nav.navbar-right
+                li(data-ng-show='userData.isAuth')
+                    a(href='#') Welcome {{userData.userName}}
+                li(data-ng-show='userData.isAuth')
+                    a(href='', data-ng-click='logOut()') Logout
+                li(data-ng-show='!userData.isAuth')
+                    a(href='#/login') Login
+                li(data-ng-show='!userData.isAuth')
+                    a(href='#/signup') Sign Up

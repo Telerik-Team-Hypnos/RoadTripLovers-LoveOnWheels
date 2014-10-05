@@ -1,15 +1,15 @@
 var path = require('path');
-var rootPath = path.normalize(__dirname + '/../../')
+var rootPath = path.normalize(__dirname + '/../../');
 
 module.exports = {
     development: {
         rootPath: rootPath,
-        db: 'mongodb://localhost/SimpleBlogSystem',
+        db: 'mongodb://localhost/simpleBlogNew',
         port: process.env.PORT || 1234
     },
     production: {
         rootPath: rootPath,
-        db: 'NO ONLINE DB YET',
+        db: 'no-online-database-yet',
         port: process.env.PORT || 1234
     }
 };

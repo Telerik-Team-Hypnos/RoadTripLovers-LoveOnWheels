@@ -1,0 +1,24 @@
+.row
+    .col-md-3
+    .col-lg-6
+        .well.bs-component
+            form.form-horizontal.form-Login(name='registrationForm', role='form')
+                legend Sign Up
+                .form-group
+                    label.col-lg-3.control-label Username
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Username', data-ng-model='registration.username', required='required', autofocus='autofocus')
+                .form-group
+                    label.col-lg-3.control-label Password
+                    .col-lg-9
+                        input.form-control(type='password', placeholder='Password', data-ng-model='registration.password')
+                .form-group
+                    label.col-lg-3.control-label Confirm Password
+                    .col-lg-9
+                        input.form-control(type='password', placeholder='Confirm Password', data-ng-model='registration.confirmPassword')
+                button.btn.btn-primary.btn-info.btn-block(type='submit', data-ng-click='signUp()') Register
+            a.btn.btn-default.btn-sm.btn-block(href='#/login') Login
+            hr
+            div(data-ng-hide='formMessage == ""', data-ng-class='(successfulRegistration) ?"alert alert-success" : "alert alert-danger"')
+                | {{formMessage}}
+        .col-md-3
