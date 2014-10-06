@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var itemSchema = mongoose.Schema({
     user: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     firstName: String,
@@ -12,7 +12,7 @@ var itemSchema = mongoose.Schema({
     profilePhoto: String,
     isTruckDriver: Boolean,
     town: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Town'
     }
 });

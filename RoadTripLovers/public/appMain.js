@@ -25,6 +25,21 @@ appMain.config(function ($routeProvider, appSettings) {
         templateUrl: "/partials/account/signup"
     });
 
+    $routeProvider.when("/admin-panel", {
+        controller: "AdminPanelController",
+        templateUrl: "/partials/admin/panel"
+    });
+
+    $routeProvider.when("/manage-country/:id?", {
+        controller: "ManageCountryController",
+        templateUrl: "/partials/admin/manage-country"
+    });
+
+    $routeProvider.when("/manage-town/:id?", {
+        controller: "ManageTownController",
+        templateUrl: "/partials/admin/manage-town"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

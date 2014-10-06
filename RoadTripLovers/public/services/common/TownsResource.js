@@ -1,7 +1,7 @@
 'use strict';
 
-appMain.factory('CountriesResource', function ($q, httQ) {
-    var serviceUrl = "/api/countries";
+appMain.factory('TownsResource', function ($q, httQ) {
+    var serviceUrl = "/api/towns";
 
     return {
         getAll: function () {

@@ -1,4 +1,5 @@
 var Country = require('mongoose').model('Country');
+var Town = require('mongoose').model('Town');
 
 module.exports = {
     createItem: function(req, res) {
@@ -15,8 +16,10 @@ module.exports = {
 
     },
     updateItem: function(req, res) {
-        Country.findOne({name: req.body._id}).exec(function (err, item) {
-            item = req.body;
+        Country.findOne({_id: req.body._id}).exec(function (err, item) {
+
+            item.name = req.body.name;
+
             item.save(function(err, item) {
                 if (err) {
                     console.log('Failed to create new item: ' + err);
@@ -36,7 +39,40 @@ module.exports = {
             res.send(collection);
         })
     },
-    deleteItem: function (req, res) {
+    getById: function(req, res, next) {
+        Country.findOne({_id: req.params.id}).exec(function(err, result) {
+            if (err) {
+                console.log('Item could not be loaded: ' + err);
+            }
 
-    }
+            res.send(result);
+        })
+      }
+//    ,
+//    deleteItem: function(req, res, next) {
+//        Country.findOne({_id: req.params.id}).exec(function (err, item) {
+//
+//            item.deleted = true;
+//
+//            item.save(function(err, item) {
+//                if (err) {
+//                    console.log('Failed to create new item: ' + err);
+//                    return;
+//                }
+//
+//                Town.find({country: item._id}).exec(function(err, collection) {
+//                    if (err) {
+//                        console.log('Items could not be loaded: ' + err);
+//                    }
+//
+//                    for(currentTown in collection){
+//                        currentTown.deleted = true
+//                        currentTown.save();
+//                    }
+//
+//                    res.send(true);
+//                });
+//            })
+//        });
+//    }
 };

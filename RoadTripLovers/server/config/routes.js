@@ -15,9 +15,17 @@ module.exports = function(app) {
 
     // Country Requests
     app.get('/api/countries', controllers.countries.getAll);
+    app.get('/api/countries/:id', controllers.countries.getById);
     app.post('/api/countries', controllers.countries.createItem);
     app.put('/api/countries', controllers.countries.updateItem);
-    app.delete('/api/countries', controllers.countries.deleteItem);
+//    app.delete('/api/countries/:id', controllers.countries.deleteItem);
+
+    // Town Requests
+    app.get('/api/towns', controllers.towns.getAll);
+    app.get('/api/towns/:id', controllers.towns.getById);
+    app.post('/api/towns', controllers.towns.createItem);
+    app.put('/api/towns', controllers.towns.updateItem);
+    app.delete('/api/towns', controllers.towns.deleteItem);
 
     app.get('/api/*', function(req, res) {
         res.status(404);

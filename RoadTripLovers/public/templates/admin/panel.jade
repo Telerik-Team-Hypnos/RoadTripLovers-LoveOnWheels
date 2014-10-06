@@ -1,0 +1,27 @@
+.row
+    .col-md-3
+        h1 Countries
+            .pull-right
+                strong &nbsp;{{countriesCount}}
+        | Search:&nbsp;
+        input(type="text" ng-model="countrySearch")
+        hr
+        .bs-component
+            ul.list-group
+                li.list-group-item(ng-repeat="country in countries | filter: countrySearch | orderBy:'name' | limitTo: 10")
+                    a(href="#/manage-country/{{country._id}}") {{country.name}}
+        a.btn.btn-primary.btn-block(href='#/manage-country') Add Country
+
+    .col-md-3
+        h1 Towns
+            .pull-right
+                strong &nbsp;{{townsCount}}
+        | Search:&nbsp;
+        input(type="text" ng-model="townSearch")
+        hr
+        .bs-component
+            ul.list-group
+                li.list-group-item(ng-repeat="town in towns | filter: townSearch | limitTo: 10")
+                    span.badge {{town.country.name}}
+                    a(href="#/manage-town/{{town._id}}") {{town.name}}
+        a.btn.btn-primary.btn-block(href='#/manage-town') Add Town

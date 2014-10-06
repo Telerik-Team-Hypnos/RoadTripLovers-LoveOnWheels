@@ -1,10 +1,10 @@
 .navbar.navbar-inverse
     .container
         .navbar-header
-            a.navbar-brand(href="#/") Simple Blog System
+            a.navbar-brand(href="#/") Road Trip Lovers
             ul.nav.navbar-nav
-                li(ng-show="userData.isAuth")
-                    a(href="#/Add Article") Add Article
+                li(ng-show="checkRole('admin')")
+                    a(href="#/admin-panel") Admin Panel
 
         .collapse.navbar-collapse(data-collapse='!navbarExpanded')
             ul.nav.navbar-nav.navbar-right

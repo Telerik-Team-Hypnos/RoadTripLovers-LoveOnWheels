@@ -1,0 +1,13 @@
+.row
+    .col-md-3
+    .col-lg-6
+        .well.bs-component
+            form.form-horizontal.form-Login
+                legend {{buttonText}}
+                .form-group
+                    label.col-lg-3.control-label Name
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Name', data-ng-model='countryData.name', required='required', autofocus='autofocus')
+                button.btn.btn-primary.btn-info.btn-block(type='submit', data-ng-click='manageItem()') {{buttonText}}
+            a.btn.btn-default.btn-sm.btn-block(href='#/admin-panel') Cancel
+    .col-md-3
