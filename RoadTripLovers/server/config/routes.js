@@ -13,6 +13,12 @@ module.exports = function(app) {
     app.post('/api/login', auth.login);
     app.post('/api/logout', auth.logout);
 
+    // Country Requests
+    app.get('/api/countries', controllers.countries.getAll);
+    app.post('/api/countries', controllers.countries.createItem);
+    app.put('/api/countries', controllers.countries.updateItem);
+    app.delete('/api/countries', controllers.countries.deleteItem);
+
     app.get('/api/*', function(req, res) {
         res.status(404);
         res.end();
