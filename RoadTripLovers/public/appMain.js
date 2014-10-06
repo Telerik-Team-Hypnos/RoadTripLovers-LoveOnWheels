@@ -3,7 +3,7 @@
 var appMain = angular.module('appMain', ['ngRoute', 'LocalStorageModule', 'httpQRequest']);
 
 appMain.constant("appSettings", {
-    author: "Pesho Dev International",
+    author: "Road Trip Lovers - Love On Wheels ",
     authorLink: "http://telerikacademy.com",
     poweredBy: "AngularJs"
 });

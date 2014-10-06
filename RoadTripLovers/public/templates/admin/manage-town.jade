@@ -13,6 +13,6 @@
                     .col-lg-9
                         select.form-control(ng-model="townData.country")
                             option(ng-repeat="country in countries" value="{{country._id}}" ng-selected="country._id === townData.country._id") {{country.name}}
-                button.btn.btn-primary.btn-info.btn-block(type='submit', data-ng-click='manageItem()') {{buttonText}}
+                button.btn.btn-primary.btn-block(type='submit', data-ng-click='manageItem()') {{buttonText}}
             a.btn.btn-default.btn-sm.btn-block(href='#/admin-panel') Cancel
     .col-md-3
