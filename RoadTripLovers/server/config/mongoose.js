@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var user = require('../models/User');
+var country = require('../models/Country');
 var infoPage = require('../models/InfoPage');
 
 module.exports = function(config) {
@@ -20,5 +21,6 @@ module.exports = function(config) {
     });
 
     user.seedInitialUsers();
+    country.seedInitial();
 	infoPage.seedInitial();
 };

@@ -1,2 +1,5 @@
-h1(ng-show="checkRole('admin')")
-    | Welcome Home
+.row
+    .col-md-6
+        ul
+            li(ng-repeat="country in countries")
+                | {{country.name}}

@@ -11,7 +11,7 @@ appMain.constant("appSettings", {
 appMain.config(function ($routeProvider, appSettings) {
 
     $routeProvider.when("/home", {
-        controller: "PageController",
+        controller: "HomeController",
         templateUrl: "/partials/home/home"
     });
 
@@ -24,10 +24,6 @@ appMain.config(function ($routeProvider, appSettings) {
         controller: "SignUpController",
         templateUrl: "/partials/account/signup"
     });
-
-//    $routeProvider.when("/unauthorized", {
-//        templateUrl: appSettings.templatesFolder + "/unauthorized.html"
-//    });
 
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
