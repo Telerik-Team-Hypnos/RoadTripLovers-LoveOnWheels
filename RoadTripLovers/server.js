@@ -14,4 +14,4 @@ app.listen(config.port);
 console.log("Server running on port: " + config.port);
 
 // For nodemon reset purposes
-var nodemonReset = 21313;
+var nodemonReset = 12;

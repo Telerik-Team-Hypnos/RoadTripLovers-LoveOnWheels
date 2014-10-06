@@ -27,6 +27,8 @@ module.exports = {
     updateUser: function(req, res, next) {
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
             var updatedUserData = req.body;
+            //updatedUserData.town = req.body.town._id;
+            console.log(updatedUserData);
             if (updatedUserData.password && updatedUserData.password.length > 0) {
                 updatedUserData.salt = encryption.generateSalt();
                 updatedUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
@@ -47,6 +49,15 @@ module.exports = {
             }
 
             res.send(collection);
+        })
+    },
+    getById: function(req, res, next) {
+        User.findOne({_id: req.params.id}).exec(function(err, result) {
+            if (err) {
+                console.log('User could not be loaded: ' + err);
+            }
+
+            res.send(result);
         })
     }
 };

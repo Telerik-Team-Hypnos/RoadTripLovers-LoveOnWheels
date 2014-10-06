@@ -7,6 +7,17 @@ var userSchema = mongoose.Schema({
         require: '{PATH} is required',
         unique: true
     },
+    firstName: String,
+    lastName: String,
+    motto: String,
+    birthDate: Date,
+    town: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Town'
+    },
+    sex: String,
+    profilePhoto: String,
+    isTruckDriver: Boolean,
     salt: String,
     hashPass: String,
     roles: [String]
@@ -41,6 +52,9 @@ module.exports.seedInitialUsers = function() {
 
             User.create({
                 username: 'superlover69',
+                firstName: 'Ass',
+                lastName: 'Ventura',
+                motto: 'If I can\'t buy you a drink, at least let me fix your laptop.',
                 salt: salt,
                 hashPass: hashedPwd,
                 roles: ['admin']

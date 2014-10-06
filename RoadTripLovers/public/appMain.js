@@ -8,7 +8,7 @@ appMain.constant("appSettings", {
     poweredBy: "AngularJs"
 });
 
-appMain.config(function ($routeProvider, appSettings) {
+appMain.config(function ($routeProvider) {
 
     $routeProvider.when("/home", {
         controller: "HomeController",
@@ -23,6 +23,11 @@ appMain.config(function ($routeProvider, appSettings) {
     $routeProvider.when("/signup", {
         controller: "SignUpController",
         templateUrl: "/partials/account/signup"
+    });
+
+    $routeProvider.when("/profile", {
+        controller: "ManageProfileController",
+        templateUrl: "/partials/account/profile"
     });
 
     $routeProvider.when("/admin-panel", {

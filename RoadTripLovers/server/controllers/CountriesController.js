@@ -16,19 +16,23 @@ module.exports = {
 
     },
     updateItem: function(req, res) {
-        Country.findOne({_id: req.body._id}).exec(function (err, item) {
-
-            item.name = req.body.name;
-
-            item.save(function(err, item) {
-                if (err) {
-                    console.log('Failed to create new item: ' + err);
-                    return;
-                }
-
-                res.send(item);
-            })
-        });
+//        Country.findOne({_id: req.body._id}).exec(function (err, item) {
+//
+//            item.name = req.body.name;
+//
+//            item.save(function(err, item) {
+//                if (err) {
+//                    console.log('Failed to create new item: ' + err);
+//                    return;
+//                }
+//
+//                res.send(item);
+//            })
+//        });
+        var itemToUpdate = req.body;
+        Country.update({_id: req.body._id}, itemToUpdate, function() {
+            res.end();
+        })
     },
     getAll: function(req, res) {
         Country.find({}).exec(function(err, collection) {
@@ -47,7 +51,7 @@ module.exports = {
 
             res.send(result);
         })
-      }
+    }
 //    ,
 //    deleteItem: function(req, res, next) {
 //        Country.findOne({_id: req.params.id}).exec(function (err, item) {

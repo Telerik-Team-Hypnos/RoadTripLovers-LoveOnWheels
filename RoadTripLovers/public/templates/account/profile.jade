@@ -1,0 +1,51 @@
+.row
+    .col-md-2
+    .col-lg-8
+        .well.bs-component
+            form.form-horizontal.form-Login
+                legend Manage Profile
+                .form-group
+                    label.col-lg-3.control-label Username
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Username', data-ng-model='profileData.username', required='required', autofocus='autofocus')
+
+                .form-group
+                    label.col-lg-3.control-label First Name
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='First Name', data-ng-model='profileData.firstName')
+
+                .form-group
+                    label.col-lg-3.control-label Last Name
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Last Name', data-ng-model='profileData.lastName')
+
+                .form-group
+                    label.col-lg-3.control-label Motto
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Motto', data-ng-model='profileData.motto')
+
+                .form-group
+                    label.col-lg-3.control-label Birth Date
+                    .col-lg-9
+                        input.form-control(type='text', date-picker placeholder='Birth Date', data-ng-model='profileData.birthDate')
+
+                .form-group
+                    label.col-lg-3.control-label Sex
+                    .col-lg-9
+                        select.form-control(ng-model="profileData.sex")
+                            option(ng-repeat="sex in sexTypes" value="{{sex}}" ng-selected="sex === profileData.sex") {{sex}}
+
+                .form-group
+                    label.col-lg-3.control-label Town
+                    .col-lg-9
+                        select.form-control(ng-model="profileData.town")
+                            option(ng-repeat="town in towns | orderBy:'name'" value="{{town._id}}" ng-selected="town._id === profileData.town._id") {{town.name}}
+
+                .form-group
+                    label.col-lg-3.control-label New Password
+                    .col-lg-9
+                        input.form-control(type='password', placeholder='New Password', data-ng-model='profileData.password')
+
+                button.btn.btn-primary.btn-info.btn-block(type='submit', data-ng-click='updateProfile()') Update Profile
+            a.btn.btn-default.btn-sm.btn-block(href='#/') Cancel
+    .col-md-2

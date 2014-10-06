@@ -12,6 +12,10 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         return httQ.post("/api/users/", registration);
     }
 
+    function getById(id) {
+        return httQ.get("/api/users/" + id);
+    }
+
     function loginUser(user) {
         var deferred = $q.defer();
 
@@ -20,11 +24,13 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
                 if(response.success){
                     localStorageService.set('authorizationData', {
                         username: user.username,
-                        roles: response.user.roles
+                        roles: response.user.roles,
+                        userId: response.user._id
                     });
 
                     authenticationData.isAuth = true;
                     authenticationData.username = user.username;
+                    authenticationData.userId = response.user._id;
                     authenticationData.roles = response.user.roles;
 
                     deferred.resolve(response);
@@ -53,6 +59,7 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         if (identityData) {
             authenticationData.isAuth = true;
             authenticationData.username = identityData.username;
+            authenticationData.userId = identityData.userId;
             authenticationData.roles = identityData.roles;
         }
     }
@@ -62,11 +69,16 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
 
         authenticationData.isAuth = false;
         authenticationData.username = "";
+        authenticationData.userId = "";
         authenticationData.roles = [];
     }
 
     function checkRole(role){
         return authenticationData.roles.indexOf(role) > -1;
+    }
+
+    function editItem(profileData) {
+        return httQ.put('/api/users/', profileData);
     }
 
     return {
@@ -75,6 +87,8 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         logOutUser: logOutUser,
         checkIdentity: checkIdentity,
         userData: authenticationData,
-        checkRole: checkRole
+        checkRole: checkRole,
+        getById: getById,
+        editUserProfile: editItem
     };
 });
