@@ -25,3 +25,16 @@
                     span.badge {{town.country.name}}
                     a(href="#/manage-town/{{town._id}}") {{town.name}}
         a.btn.btn-primary.btn-block(href='#/manage-town') Add Town
+
+    .col-md-3
+        h1 Pages
+            .pull-right
+                strong &nbsp;{{pagesCount}}
+        | Search:&nbsp;
+        input(type="text" ng-model="pageSearch")
+        hr
+        .bs-component
+            ul.list-group
+                li.list-group-item(ng-repeat="page in pages | filter: pageSearch | limitTo: 10")
+                    a(href="#/manage-page/{{page._id}}") {{page.title}}
+        a.btn.btn-primary.btn-block(href='#/manage-page') Add Page

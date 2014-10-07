@@ -2,8 +2,14 @@ hr
 #footer
 .container
     .row
-        .col-md-12
+        .col-md-6
             p.text-muted.text-center
                 | Made By 
                 a(href="{{authorLink}}") {{author}}
                 | | Powered By {{poweredBy}}
+
+        .col-md-6
+            p.text-muted.text-center
+                span(ng-repeat="page in footerPages")
+                    a(href="#/page-details/{{page._id}}") {{page.title}}
+                    | |&nbsp;

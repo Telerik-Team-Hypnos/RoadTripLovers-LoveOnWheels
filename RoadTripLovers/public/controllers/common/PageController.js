@@ -1,7 +1,7 @@
 ﻿'use strict';
 
-appMain.controller('PageController', function ($scope, $location, appSettings, AccountService) {
-    $scope.title = "Simple Blog System";
+appMain.controller('PageController', function ($scope, $location, appSettings, AccountService, PagesResource) {
+    $scope.title = "Truck Drivers Dating Service";
     $scope.author = appSettings.author;
     $scope.authorLink = appSettings.authorLink;
     $scope.poweredBy = appSettings.poweredBy;
@@ -13,4 +13,9 @@ appMain.controller('PageController', function ($scope, $location, appSettings, A
 
     $scope.userData = AccountService.userData;
     $scope.checkRole = AccountService.checkRole;
+
+    PagesResource.getAll()
+        .then(function(response){
+            $scope.footerPages = response;
+        });
 });

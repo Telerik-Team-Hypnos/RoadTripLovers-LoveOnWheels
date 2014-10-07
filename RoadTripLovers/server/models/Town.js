@@ -107,7 +107,7 @@ module.exports.seedInitial = function() {
                 });
             });
 
-            console.log('Towns Added to database added to database...');
+            console.log('Towns Added to database...');
         }
     });
 };

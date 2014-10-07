@@ -35,6 +35,16 @@ appMain.config(function ($routeProvider) {
         templateUrl: "/partials/home/user-details"
     });
 
+    $routeProvider.when("/page-details/:id", {
+        controller: "PageDetailsController",
+        templateUrl: "/partials/home/page-details"
+    });
+
+    $routeProvider.when("/mange-trip/:id?", {
+        controller: "ManageTripController",
+        templateUrl: "/partials/trip/manage-trip"
+    });
+
     // Admin Stuff
     $routeProvider.when("/admin-panel", {
         controller: "AdminPanelController",
@@ -50,6 +60,12 @@ appMain.config(function ($routeProvider) {
         controller: "ManageTownController",
         templateUrl: "/partials/admin/manage-town"
     });
+
+    $routeProvider.when("/manage-page/:id?", {
+        controller: "ManagePageController",
+        templateUrl: "/partials/admin/manage-page"
+    });
+
 
     $routeProvider.otherwise({ redirectTo: "/home" });
 });

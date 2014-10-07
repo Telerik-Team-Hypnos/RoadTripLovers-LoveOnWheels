@@ -3,6 +3,8 @@
         .navbar-header
             a.navbar-brand(href="#/") Road Trip Lovers
             ul.nav.navbar-nav
+                li(data-ng-show='userData.isAuth')
+                    a(href='#/profile') My Profile
                 li(ng-show="checkRole('admin')")
                     a(href="#/admin-panel") Admin Panel
 

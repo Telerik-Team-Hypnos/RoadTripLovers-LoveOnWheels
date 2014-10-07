@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var user = require('../models/User');
 var country = require('../models/Country');
 var town = require('../models/Town');
-var infoPage = require('../models/InfoPage');
+var page = require('../models/Page');
+var trip = require('../models/Trip');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -24,5 +25,5 @@ module.exports = function(config) {
     user.seedInitialUsers();
     country.seedInitial();
     town.seedInitial();
-	infoPage.seedInitial();
+    page.seedInitial();
 };
