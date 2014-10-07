@@ -3,7 +3,7 @@
         | Search:&nbsp;
         input(type="text" ng-model="userSearch")
 .row
-    .col-md-6
+    .col-md-4
         h1 Top Users
         hr
         .bs-component
@@ -11,10 +11,11 @@
                 li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false}| filter:userSearch | orderBy:'username' | limitTo: 10")
                     a(href="#/user-details/{{user._id}}") {{user.username}}
 
-    .col-md-6
+    .col-md-4
         h1 Top Drivers
         hr
         .bs-component
             ul.list-group
                 li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:true}| orderBy:'username' | limitTo: 10")
                     a(href="#/user-details/{{user._id}}") {{user.username}}
+    include live-chat

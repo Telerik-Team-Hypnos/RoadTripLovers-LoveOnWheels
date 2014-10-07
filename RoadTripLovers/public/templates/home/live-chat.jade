@@ -1,0 +1,8 @@
+.panel.panel-info.col-md-4
+    .panel-heading
+        h1.panel-title Live Chat
+    .panel-body#live-chat-container
+        ul.list-group
+            li.list-group-item(ng-repeat="message in messages")
+                a(href="#/user-details/{{user._id}}") {{message.user}} : {{message.text}}
+    input.form-control(type="text" rows="2" ng-model="messageText" ng-keyup="$event.keyCode == 13 ? send() : null")
