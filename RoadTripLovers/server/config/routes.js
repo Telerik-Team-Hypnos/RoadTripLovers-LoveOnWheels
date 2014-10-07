@@ -2,7 +2,7 @@ var auth = require('./auth'),
     controllers = require('../controllers');
 
 module.exports = function(app) {
-    app.get('/api/users', auth.isInRole('admin'), controllers.users.getAllUsers);
+    app.get('/api/users', controllers.users.getAllUsers);
     app.get('/api/users/:id', auth.isAuthenticated, controllers.users.getById);
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
@@ -15,18 +15,18 @@ module.exports = function(app) {
     app.post('/api/logout', auth.logout);
 
     // Country Requests
-    app.get('/api/countries', controllers.countries.getAll);
-    app.get('/api/countries/:id', controllers.countries.getById);
-    app.post('/api/countries', controllers.countries.createItem);
-    app.put('/api/countries', controllers.countries.updateItem);
+    app.get('/api/countries', auth.isInRole('admin'), controllers.countries.getAll);
+    app.get('/api/countries/:id',auth.isInRole('admin'), controllers.countries.getById);
+    app.post('/api/countries', auth.isInRole('admin'), controllers.countries.createItem);
+    app.put('/api/countries', auth.isInRole('admin'), controllers.countries.updateItem);
 //    app.delete('/api/countries/:id', controllers.countries.deleteItem);
 
     // Town Requests
-    app.get('/api/towns', controllers.towns.getAll);
-    app.get('/api/towns/:id', controllers.towns.getById);
-    app.post('/api/towns', controllers.towns.createItem);
-    app.put('/api/towns', controllers.towns.updateItem);
-    app.delete('/api/towns', controllers.towns.deleteItem);
+    app.get('/api/towns', auth.isInRole('admin'), controllers.towns.getAll);
+    app.get('/api/towns/:id', auth.isInRole('admin'), controllers.towns.getById);
+    app.post('/api/towns', auth.isInRole('admin'), controllers.towns.createItem);
+    app.put('/api/towns', auth.isInRole('admin'), controllers.towns.updateItem);
+    app.delete('/api/towns', auth.isInRole('admin'), controllers.towns.deleteItem);
 
     app.get('/api/*', function(req, res) {
         res.status(404);

@@ -42,6 +42,11 @@
                             option(ng-repeat="town in towns | orderBy:'name'" value="{{town._id}}" ng-selected="town._id === profileData.town._id") {{town.name}}
 
                 .form-group
+                    label.col-lg-3.control-label Truck Driver?
+                    .col-lg-9
+                        input.form-control(type='checkbox', data-ng-model='profileData.isTruckDriver')
+
+                .form-group
                     label.col-lg-3.control-label New Password
                     .col-lg-9
                         input.form-control(type='password', placeholder='New Password', data-ng-model='profileData.password')

@@ -7,7 +7,8 @@ appMain.controller('SignUpController', function ($scope, $location, AccountServi
     $scope.registration = {
         username: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        isTruckDriver: false
     };
 
     if(AccountService.userData.isAuth === true){
@@ -15,7 +16,6 @@ appMain.controller('SignUpController', function ($scope, $location, AccountServi
     }
 
     $scope.signUp = function signUpFunction() {
-
         if ($scope.registration.username === ""){
             $scope.formMessage = "Your username must be at least 6 symbols";
             return;

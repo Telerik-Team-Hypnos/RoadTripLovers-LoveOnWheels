@@ -81,6 +81,10 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         return httQ.put('/api/users/', profileData);
     }
 
+    function getAll(){
+        return httQ.get("/api/users");
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -89,6 +93,7 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         userData: authenticationData,
         checkRole: checkRole,
         getById: getById,
-        editUserProfile: editItem
+        editUserProfile: editItem,
+        getAll: getAll
     };
 });

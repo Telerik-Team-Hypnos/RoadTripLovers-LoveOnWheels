@@ -30,6 +30,12 @@ appMain.config(function ($routeProvider) {
         templateUrl: "/partials/account/profile"
     });
 
+    $routeProvider.when("/user-details", {
+        controller: "UserDetailsController",
+        templateUrl: "/partials/home/user-details"
+    });
+
+    // Admin Stuff
     $routeProvider.when("/admin-panel", {
         controller: "AdminPanelController",
         templateUrl: "/partials/admin/panel"

@@ -1,1 +1,20 @@
-h1 Welcome To Home Page
+.row(data-ng-show='userData.isAuth')
+    .col-md-2
+        | Search:&nbsp;
+        input(type="text" ng-model="userSearch")
+.row
+    .col-md-6
+        h1 Top Users
+        hr
+        .bs-component
+            ul.list-group
+                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false}| filter:userSearch | orderBy:'username' | limitTo: 10")
+                    a(href="#/user-details/{{user._id}}") {{user.username}}
+
+    .col-md-6
+        h1 Top Drivers
+        hr
+        .bs-component
+            ul.list-group
+                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:true}| orderBy:'username' | limitTo: 10")
+                    a(href="#/user-details/{{user._id}}") {{user.username}}
