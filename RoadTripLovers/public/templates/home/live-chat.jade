@@ -1,8 +1,8 @@
-.panel.panel-info.col-md-4
-    .panel-heading
-        h1.panel-title Live Chat
-    .panel-body#live-chat-container
-        ul.list-group
-            li.list-group-item(ng-repeat="message in messages")
-                a(href="#/user-details/{{user._id}}") {{message.user}} : {{message.text}}
-    input.form-control(type="text" rows="2" ng-model="messageText" ng-keyup="$event.keyCode == 13 ? send() : null")
+.bs-component
+.list-group.col-md-4
+    h1.list-group-item.active Live Chat
+    #messages-box
+        p.list-group-item(ng-repeat="message in messages")
+            span.text-muted {{message.user}}:
+            span  {{message.text}}
+    input#send-message-input.form-control.alert.alert-warning(placeholder="Send your message..." type="text" rows="2" ng-model="messageText" ng-keyup="$event.keyCode == 13 ? send() : null")
