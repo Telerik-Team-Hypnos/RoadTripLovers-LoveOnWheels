@@ -1,9 +1,10 @@
-var Country = require('mongoose').model('Country');
 var Town = require('mongoose').model('Town');
+var User = require('mongoose').model('User');
+var Trip = require('mongoose').model('Trip');
 
 module.exports = {
     createItem: function(req, res) {
-        var newItem = new Country(req.body);
+        var newItem = new Trip(req.body);
 
         newItem.save(function(err, item) {
             if (err) {
@@ -19,12 +20,12 @@ module.exports = {
 
         var itemToUpdate = req.body;
 
-        Country.update({_id: req.body._id}, itemToUpdate, function() {
+        Trip.update({_id: req.body._id}, itemToUpdate, function() {
             res.end();
         })
     },
     getAll: function(req, res) {
-        Country.find({}).exec(function(err, collection) {
+        Trip.find({}).populate("towns").exec(function(err, collection) {
             if (err) {
                 console.log('Items could not be loaded: ' + err);
             }
@@ -32,10 +33,10 @@ module.exports = {
             res.send(collection);
         })
     },
-    getById: function(req, res, next) {
-        Country.findOne({_id: req.params.id}).exec(function(err, result) {
+    getByUserId: function(req, res, next) {
+        Trip.findOne({user: req.params.user}).populate("towns").exec(function(err, result) {
             if (err) {
-                console.log('Item could not be loaded: ' + err);
+                console.log('Items could not be loaded: ' + err);
             }
 
             res.send(result);

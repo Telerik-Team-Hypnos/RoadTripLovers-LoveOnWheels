@@ -1,9 +1,8 @@
-var Country = require('mongoose').model('Country');
-var Town = require('mongoose').model('Town');
+var Page = require('mongoose').model('Page');
 
 module.exports = {
     createItem: function(req, res) {
-        var newItem = new Country(req.body);
+        var newItem = new Page(req.body);
 
         newItem.save(function(err, item) {
             if (err) {
@@ -16,15 +15,13 @@ module.exports = {
 
     },
     updateItem: function(req, res) {
-
         var itemToUpdate = req.body;
-
-        Country.update({_id: req.body._id}, itemToUpdate, function() {
+        Page.update({_id: req.body._id}, itemToUpdate, function() {
             res.end();
         })
     },
     getAll: function(req, res) {
-        Country.find({}).exec(function(err, collection) {
+        Page.find({}).exec(function(err, collection) {
             if (err) {
                 console.log('Items could not be loaded: ' + err);
             }
@@ -33,7 +30,7 @@ module.exports = {
         })
     },
     getById: function(req, res, next) {
-        Country.findOne({_id: req.params.id}).exec(function(err, result) {
+        Page.findOne({_id: req.params.id}).exec(function(err, result) {
             if (err) {
                 console.log('Item could not be loaded: ' + err);
             }

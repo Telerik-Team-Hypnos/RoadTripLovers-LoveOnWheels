@@ -1,6 +1,6 @@
 'use strict';
 
-appMain.controller('AdminPanelController', function ($scope, $location, CountriesResource, TownsResource) {
+appMain.controller('AdminPanelController', function ($scope, $location, CountriesResource, TownsResource, PagesResource) {
     CountriesResource.getAll()
         .then(function(response){
             $scope.countries = response;
@@ -11,5 +11,11 @@ appMain.controller('AdminPanelController', function ($scope, $location, Countrie
         .then(function(response){
             $scope.towns = response;
             $scope.townsCount = response.length;
+        });
+
+    PagesResource.getAll()
+        .then(function(response){
+            $scope.pages = response;
+            $scope.pagesCount = response.length;
         });
 });

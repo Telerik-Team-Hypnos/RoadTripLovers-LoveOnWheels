@@ -59,6 +59,7 @@ module.exports.seedInitialUsers = function() {
                 firstName: 'Ass',
                 lastName: 'Ventura',
                 motto: 'If I can\'t buy you a drink, at least let me fix your laptop.',
+                isTruckDriver: true,
                 salt: salt,
                 hashPass: hashedPwd,
                 roles: ['admin']
