@@ -38,7 +38,7 @@ module.exports.seedInitial = function() {
                 name: "Finland"
             });
 
-            console.log('Countries Added to database added to database...');
+            console.log('Countries Added to database...');
         }
     });
 };
