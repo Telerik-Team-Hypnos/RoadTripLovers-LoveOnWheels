@@ -5,7 +5,7 @@
 .row
     .col-md-4
         h1 Top Users
-            a(class="get-more" href="#/search-users") Get more...
+            a(class="get-more" href="#/search-users" ng-show="userData.isAuth") Get more...
         hr
         .bs-component
             ul.list-group
@@ -14,12 +14,12 @@
                     div
                         a(href="#/user-details/{{user._id}}") {{user.username}}
                             img(src="{{user.sex | transformGender}}")
-                        p(ng-show="user.town") 'Town: '
+                        p(ng-show="user.town") Town:
                             span {{user.town.name}}
 
     .col-md-4
         h1 Top Drivers
-            a(class="get-more" href="#/search-drivers") Get more...
+            a(class="get-more" href="#/search-drivers" ng-show="userData.isAuth") Get more...
         hr
         .bs-component
             ul.list-group
@@ -28,6 +28,6 @@
                     div
                         a(href="#/user-details/{{user._id}}") {{user.username}}
                             img(src="{{user.sex | transformGender}}")
-                        p= 'Town: '
+                        p Town:
                             span {{user.town.name}}
     include live-chat
