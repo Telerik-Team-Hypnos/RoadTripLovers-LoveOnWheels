@@ -9,10 +9,11 @@
         .bs-component
             ul.list-group
                 li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false}| filter:userSearch | orderBy:'username' | limitTo: 10")
-                    img(class="hero" src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2012/11/27/1354030427030/Im-online-note-on-a-keybo-010.jpg")
+                    img(class="home-page-portret" src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2012/11/27/1354030427030/Im-online-note-on-a-keybo-010.jpg")
                     a(href="#/user-details/{{user._id}}") {{user.username}}
-                    p= 'Town: Sofia'
-                    p {{user.sex}}
+                    p= 'Town: '
+                        span {{user.town}}
+                    img(src="{{user.sex | transformGender}}")
     .col-md-6
         h1 Top Drivers
         hr
