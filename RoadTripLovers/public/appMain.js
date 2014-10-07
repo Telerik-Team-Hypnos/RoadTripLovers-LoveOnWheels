@@ -30,7 +30,7 @@ appMain.config(function ($routeProvider) {
         templateUrl: "/partials/account/profile"
     });
 
-    $routeProvider.when("/user-details", {
+    $routeProvider.when("/user-details/:id", {
         controller: "UserDetailsController",
         templateUrl: "/partials/home/user-details"
     });
