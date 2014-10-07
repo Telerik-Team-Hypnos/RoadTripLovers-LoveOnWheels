@@ -66,6 +66,11 @@ appMain.config(function ($routeProvider) {
         templateUrl: "/partials/admin/manage-page"
     });
 
+//	$routeProvider.when("/search-users", {
+//		controller: "SearchUsersController",
+//		templateUrl: "/partials/account/profile"
+//	});
+
 
     $routeProvider.otherwise({ redirectTo: "/home" });
 });

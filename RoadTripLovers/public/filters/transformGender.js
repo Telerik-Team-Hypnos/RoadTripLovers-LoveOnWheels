@@ -6,7 +6,7 @@ appMain.filter('transformGender', function () {
 		if (gender === 'Male') {
 			return  rootImgFolder + 'mars-spear.png';
 		} else if (gender === 'Female') {
-			return  rootImgFolder + 'mars-spear.png';
+			return  rootImgFolder + 'venus-mirror.png';
 		} else {
 			return  rootImgFolder + 'confused.png';
 		}

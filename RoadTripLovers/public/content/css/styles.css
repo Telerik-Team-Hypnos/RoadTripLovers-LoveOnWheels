@@ -1,0 +1,47 @@
+.user-info img{
+	width: 30%;
+	height: 100px;
+	vertical-align: top;
+}
+
+.user-info > div{
+	display: inline-block;
+	width: 70%;
+}
+
+.user-info > div > a{
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.user-info > div > a > img{
+	width: 40px;
+	height: 40px;
+	margin-left: 10px;
+}
+
+.user-info > div > p{
+	display: inline-block;
+	margin: 10px 0;
+	width: 100%;
+	color: blue;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.user-info > div > p > span{
+	padding: 0 10px;
+	font-size: 1.4em;
+	color: red
+}
+
+a.get-more{
+	padding-left: 20px;
+	font-size: 16px;
+}

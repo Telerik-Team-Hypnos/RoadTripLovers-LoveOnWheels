@@ -3,21 +3,31 @@
         | Search:&nbsp;
         input(type="text" ng-model="userSearch")
 .row
-    .col-md-6
+    .col-md-4
         h1 Top Users
+            a(class="get-more" href="#/search-users") Get more...
         hr
         .bs-component
             ul.list-group
-                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false}| filter:userSearch | orderBy:'username' | limitTo: 10")
-                    img(class="home-page-portret" src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2012/11/27/1354030427030/Im-online-note-on-a-keybo-010.jpg")
-                    a(href="#/user-details/{{user._id}}") {{user.username}}
-                    p= 'Town: '
-                        span {{user.town}}
-                    img(src="{{user.sex | transformGender}}")
-    .col-md-6
+                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false}| filter:userSearch | orderBy:'username' | limitTo: 10" class="user-info")
+                    img(class="home-page-portret" src="{{user.profilePhoto ? user.profilePhoto : 'http://images.fineartamerica.com/images-medium-large/sexy-truck-driver-jim-boardman.jpg'}}")
+                    div
+                        a(href="#/user-details/{{user._id}}") {{user.username}}
+                            img(src="{{user.sex | transformGender}}")
+                        p(ng-show="user.town") 'Town: '
+                            span {{user.town.name}}
+
+    .col-md-4
         h1 Top Drivers
+            a(class="get-more" href="#/search-drivers") Get more...
         hr
         .bs-component
             ul.list-group
-                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:true}| orderBy:'username' | limitTo: 10")
-                    a(href="#/user-details/{{user._id}}") {{user.username}}
+                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:true}| orderBy:'username' | limitTo: 10" class="user-info")
+                    img(class="home-page-portret" src="{{user.profilePhoto ? user.profilePhoto : 'http://www.xor.org.uk/travel/panam2006/graphicsf/img_8783.jpg'}}")
+                    div
+                        a(href="#/user-details/{{user._id}}") {{user.username}}
+                            img(src="{{user.sex | transformGender}}")
+                        p= 'Town: '
+                            span {{user.town.name}}
+    include live-chat
