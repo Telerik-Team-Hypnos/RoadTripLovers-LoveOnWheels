@@ -32,6 +32,12 @@ module.exports = function(app) {
     app.post('/api/pages', auth.isInRole('admin'), controllers.pages.createItem);
     app.put('/api/pages', auth.isInRole('admin'), controllers.pages.updateItem);
 
+    // Trip Requests
+    app.get('/api/trips', controllers.trips.getAll);
+    app.get('/api/trips/:user', controllers.trips.getByUserId);
+    app.post('/api/trips', controllers.trips.createItem);
+    app.put('/api/trips', controllers.trips.updateItem);
+
     app.get('/api/*', function(req, res) {
         res.status(404);
         res.end();

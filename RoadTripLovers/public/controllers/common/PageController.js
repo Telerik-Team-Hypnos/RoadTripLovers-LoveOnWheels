@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 appMain.controller('PageController', function ($scope, $location, appSettings, AccountService, PagesResource) {
-    $scope.title = "Simple Blog System";
+    $scope.title = "Truck Drivers Dating Service";
     $scope.author = appSettings.author;
     $scope.authorLink = appSettings.authorLink;
     $scope.poweredBy = appSettings.poweredBy;

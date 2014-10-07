@@ -3,6 +3,7 @@ var user = require('../models/User');
 var country = require('../models/Country');
 var town = require('../models/Town');
 var page = require('../models/Page');
+var trip = require('../models/Trip');
 
 module.exports = function(config) {
     mongoose.connect(config.db);

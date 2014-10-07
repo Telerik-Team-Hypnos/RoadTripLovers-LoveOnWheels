@@ -40,6 +40,11 @@ appMain.config(function ($routeProvider) {
         templateUrl: "/partials/home/page-details"
     });
 
+    $routeProvider.when("/mange-trip/:id?", {
+        controller: "ManageTripController",
+        templateUrl: "/partials/trip/manage-trip"
+    });
+
     // Admin Stuff
     $routeProvider.when("/admin-panel", {
         controller: "AdminPanelController",
