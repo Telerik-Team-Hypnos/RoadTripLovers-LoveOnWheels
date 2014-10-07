@@ -1,0 +1,18 @@
+.row(data-ng-show='userData.isAuth')
+    .col-md-2
+        | Search:&nbsp;
+        input(type="text" ng-model="userSearch")
+.row
+    .col-md-12
+        h1 Top Drivers
+            a(class="get-more" href="#/search-drivers") Search...
+        hr
+        .bs-component
+            ul.list-group
+                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:true}| orderBy:'username' | limitTo: 10" class="user-info")
+                    img(class="home-page-portret" src="{{user.profilePhoto ? user.profilePhoto : 'http://www.xor.org.uk/travel/panam2006/graphicsf/img_8783.jpg'}}")
+                    div
+                        a(href="#/user-details/{{user._id}}") {{user.username}}
+                            img(src="{{user.sex | transformGender}}")
+                        p= 'Town: '
+                            span {{user.town.name}}
