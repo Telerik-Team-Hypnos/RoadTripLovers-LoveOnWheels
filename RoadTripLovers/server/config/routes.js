@@ -15,18 +15,22 @@ module.exports = function(app) {
     app.post('/api/logout', auth.logout);
 
     // Country Requests
-    app.get('/api/countries', auth.isInRole('admin'), controllers.countries.getAll);
-    app.get('/api/countries/:id',auth.isInRole('admin'), controllers.countries.getById);
+    app.get('/api/countries', controllers.countries.getAll);
+    app.get('/api/countries/:id', controllers.countries.getById);
     app.post('/api/countries', auth.isInRole('admin'), controllers.countries.createItem);
     app.put('/api/countries', auth.isInRole('admin'), controllers.countries.updateItem);
-//    app.delete('/api/countries/:id', controllers.countries.deleteItem);
 
     // Town Requests
-    app.get('/api/towns', auth.isInRole('admin'), controllers.towns.getAll);
-    app.get('/api/towns/:id', auth.isInRole('admin'), controllers.towns.getById);
+    app.get('/api/towns', controllers.towns.getAll);
+    app.get('/api/towns/:id', controllers.towns.getById);
     app.post('/api/towns', auth.isInRole('admin'), controllers.towns.createItem);
     app.put('/api/towns', auth.isInRole('admin'), controllers.towns.updateItem);
-    app.delete('/api/towns', auth.isInRole('admin'), controllers.towns.deleteItem);
+
+    // Page Requests
+    app.get('/api/pages', controllers.pages.getAll);
+    app.get('/api/pages/:id', controllers.pages.getById);
+    app.post('/api/pages', auth.isInRole('admin'), controllers.pages.createItem);
+    app.put('/api/pages', auth.isInRole('admin'), controllers.pages.updateItem);
 
     app.get('/api/*', function(req, res) {
         res.status(404);
