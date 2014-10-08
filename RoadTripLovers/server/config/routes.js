@@ -38,6 +38,9 @@ module.exports = function(app) {
     app.post('/api/trips', controllers.trips.createItem);
     app.put('/api/trips', controllers.trips.updateItem);
 
+	//Messages Requests
+	app.post('/api/messages/',controllers.messages.createItem);
+	
     app.get('/api/*', function(req, res) {
         res.status(404);
         res.end();
