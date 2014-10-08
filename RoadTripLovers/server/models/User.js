@@ -65,6 +65,17 @@ module.exports.seedInitialUsers = function() {
                 roles: ['admin']
             });
 
+			User.create({
+                username: 'vladko_draivera',
+                firstName: 'Volodq',
+                lastName: 'Kolarq',
+                motto: '6te te vozq',
+                isTruckDriver: true,
+                salt: salt,
+                hashPass: hashedPwd,
+                roles: []
+            });
+			
             console.log('Users added to database...');
         }
     });
