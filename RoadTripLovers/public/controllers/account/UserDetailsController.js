@@ -3,31 +3,32 @@
 appMain.controller('UserDetailsController',
     function ($scope, $location, $routeParams, AccountService, MessagesResource, TownsResource, CommentsResource) {
 
-        $scope.newComment = {
-            body: ''
-        };
+		if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
+			
+				$scope.newComment = {
+				body: ''
+			};
 
-        $scope.postComment = function () {
-            var data = {
-                body: $scope.newComment.body,
-                date: new Date(),
-                sender: $scope.loggedUserId,
-                receiver: $scope.currentUser._id
-            }
+			$scope.postComment = function () {
+				var data = {
+					body: $scope.newComment.body,
+					date: new Date(),
+					sender: $scope.loggedUserId,
+					receiver: $scope.currentUser._id
+				}
 
-            CommentsResource.addItem(data).then(function (success) {
-                $scope.comments.push(success);
-                $scope.newComment.body = '';
-            }, function (error) {
-                console.log(error);
-            })
-        }
+				CommentsResource.addItem(data).then(function (success) {
+					$scope.comments.push(success);
+					$scope.newComment.body = '';
+				}, function (error) {
+					console.log(error);
+				})
+			}
 
-        CommentsResource.getByReceiver($routeParams.id).then(function (results) {
-            $scope.comments = results;
-        });
-
-        if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
+			CommentsResource.getByReceiver($routeParams.id).then(function (results) {
+				$scope.comments = results;
+			});
+			
             AccountService.getById($routeParams.id)
                 .then(function (response) {
                     $scope.currentUser = response;
