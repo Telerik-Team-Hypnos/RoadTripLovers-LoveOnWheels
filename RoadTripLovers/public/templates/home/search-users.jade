@@ -1,17 +1,31 @@
 .row(data-ng-show='userData.isAuth')
-    .col-md-2
-        | Search:&nbsp;
-        input(type="text" ng-model="userSearch")
-.row
     .col-md-12
         h1 Search Users
         hr
+        .row
+            .col-md-2
+                | By Username:&nbsp;
+                input(type="text" ng-model="userSearch")
+            .col-md-2.selector
+                | By gender:&nbsp;
+                select(class="search-select" ng-model="userGender" ng-change="filterUsers()" ng-options="gender for gender in genderTypes")
+            .col-md-2
+                | By Town:&nbsp;
+                select(class="search-select" ng-model="userTown" ng-change="filterUsers()" ng-options="town.name for town in towns")
+        hr
         .bs-component
-            ul.list-group
-                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false}| filter:userSearch | orderBy:'username' | limitTo: 10" class="user-info")
+            ul.list-group.search-results
+                li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false} | filter:userSearch | orderBy:'username'" class="user-more-info")
                     img(class="home-page-portret" src="{{user.profilePhoto ? user.profilePhoto : 'http://images.fineartamerica.com/images-medium-large/sexy-truck-driver-jim-boardman.jpg'}}")
                     div
                         a(href="#/user-details/{{user._id}}") {{user.username}}
                             img(src="{{user.sex | transformGender}}")
-                        p(ng-show="user.town") 'Town: '
+                        p(ng-show="user.firstName || user.lastName") Name:
+                            span {{user.firstName}} {{user.lastName}}
+                        p(ng-show="user.motto") Motto:
+                            span "{{user.motto}}"
+                        p(ng-show="user.town") Town:
                             span {{user.town.name}}
+                        p(ng-show="user.birthDate") Born:
+                            span {{user.birthDate | transformDate}}
+                li.no-users-found(ng-hide="users | filter: {isTruckDriver:false} | filter:userSearch") No users match the search
