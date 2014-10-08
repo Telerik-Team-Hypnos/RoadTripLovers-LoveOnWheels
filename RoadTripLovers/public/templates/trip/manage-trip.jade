@@ -1,0 +1,31 @@
+.row
+    .col-md-3
+    .col-lg-6
+        .well.bs-component
+            form.form-horizontal.form-Login
+                legend {{buttonText}}
+                .form-group
+                    label.col-lg-3.control-label Start Date
+                    .col-lg-9
+                        input.form-control(date-picker, placeholder='Start Date', data-ng-model='tripData.startDate', required='required')
+
+                .form-group
+                    label.col-lg-3.control-label End Date
+                    .col-lg-9
+                        input.form-control(date-picker, placeholder='End Date', data-ng-model='tripData.endDate', required='required')
+
+                .form-group
+                    label.col-lg-3.control-label Starts From
+                    .col-lg-9
+                        select.form-control(data-ng-model='tripData.startTown')
+                            option(ng-repeat="town in towns" value="{{town._id}}" ng-selected="town._id === tripData.startTown._id") {{town.name}}
+
+                .form-group
+                    label.col-lg-3.control-label Ends At
+                    .col-lg-9
+                        select.form-control(data-ng-model='tripData.endTown')
+                            option(ng-repeat="town in towns" value="{{town._id}}" ng-selected="town._id === tripData.endTown._id") {{town.name}}
+
+                button.btn.btn-primary.btn-block(type='submit', data-ng-click='manageItem()') {{buttonText}}
+            a.btn.btn-default.btn-sm.btn-block(href='#/profile') Cancel
+    .col-md-3
