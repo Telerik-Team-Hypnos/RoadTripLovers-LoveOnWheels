@@ -5,6 +5,7 @@ var town = require('../models/Town');
 var page = require('../models/Page');
 var trip = require('../models/Trip');
 var message = require('../models/Message');
+var comment = require('../models/Comment');
 
 module.exports = function(config) {
     mongoose.connect(config.db);

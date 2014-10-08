@@ -5,3 +5,12 @@
   height: 350px;
   overflow: auto;
 }
+.modal-title {
+  border: 0px solid #000;
+  border-bottom: 1px solid #ffa500;
+  width: 100%;
+  font-size: 20px;
+}
+.modal-title:focus {
+  outline: 0;
+}

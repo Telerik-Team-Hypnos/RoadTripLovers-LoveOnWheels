@@ -2,7 +2,7 @@
 .list-group.col-md-4
     h1.list-group-item.active Live Chat
     #messages-box
-        p.list-group-item(ng-repeat="message in messages")
+        .list-group-item(ng-repeat="message in messages")
             span.text-muted {{message.user}}:
             span  {{message.text}}
-    input#send-message-input.form-control.alert.alert-warning(placeholder="Send your message..." type="text" rows="2" ng-model="messageText" ng-keyup="$event.keyCode == 13 ? send() : null")
+    input#send-message-input.form-control.alert.alert-warning(placeholder="Send your message..." type="text" ng-model="messageText" ng-keyup="$event.keyCode == 13 ? send() : null")

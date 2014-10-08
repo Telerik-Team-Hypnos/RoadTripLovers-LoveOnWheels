@@ -23,6 +23,5 @@ module.exports = {
 
             res.send('Message sent.');
         });
-
-    },
+    }
 };

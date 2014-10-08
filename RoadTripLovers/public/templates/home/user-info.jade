@@ -1,0 +1,21 @@
+.col-md-5
+    div(ng-show="currentUser.profilePhoto")
+        img(src="currentUser.profilePhoto")
+    div(ng-show="currentUser.firstName || currentUser.lastName")
+        span.text-muted.lead Name:
+        span.lead  {{currentUser.firstName}} {{currentUser.lastName}}
+    div(ng-show="currentUser.birthDate")
+        span.text-muted.lead Born:
+        span.lead  {{currentUser.birthDate | date: short}}
+    div(ng-show="currentUser.sex")
+        span.text-muted.lead Gender:
+        span.lead  {{currentUser.sex}}
+    div(ng-show="currentUser.town")
+        span.text-muted.lead Town:
+        span.lead  {{currentUser.town}}
+    div(ng-show="currentUser.country")
+        span.text-muted.lead Country:
+        span.lead  {{currentUser.country}}
+    div(ng-show="currentUser.motto")
+        span.text-muted.lead Moto:
+        span.lead  {{currentUser.motto}}

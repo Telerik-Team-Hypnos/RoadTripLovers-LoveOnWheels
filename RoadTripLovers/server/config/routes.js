@@ -40,6 +40,10 @@ module.exports = function(app) {
 
 	//Messages Requests
 	app.post('/api/messages/',controllers.messages.createItem);
+
+    // Comments Requests
+    app.get('/api/comments/:id', controllers.comments.getByReceiver);
+    app.post('/api/comments', controllers.comments.createItem)
 	
     app.get('/api/*', function(req, res) {
         res.status(404);

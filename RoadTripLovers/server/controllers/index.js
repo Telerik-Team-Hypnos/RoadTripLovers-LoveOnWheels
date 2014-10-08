@@ -4,6 +4,7 @@ var townsController = require('./TownsController');
 var pagesController = require('./PagesController');
 var tripsController = require('./TripsController');
 var messagesController = require('./MessagesController');
+var commentsController = require('./CommentsController');
 
 module.exports = {
     users: usersController,
@@ -11,5 +12,6 @@ module.exports = {
     towns: townsController,
     pages: pagesController,
     trips: tripsController,
-	messages: messagesController
+	messages: messagesController,
+    comments: commentsController
 };
