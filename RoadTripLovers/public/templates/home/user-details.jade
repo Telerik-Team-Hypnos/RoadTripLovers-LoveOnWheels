@@ -16,8 +16,17 @@
                             a(href="" data-toggle="modal" data-target="#sendMessageModal") Send Message
                 include user-info
                 .col-md-5
-                    input(type="text" ng-model="comment.title")
-                    textarea(ng-model="comment.body")
-                    button(ng-click="postComment(comment)") Post
+                    .list-group
+                        h3.list-group-item.active.text-center Comments
+                        #comments
+                            .list-group-item(ng-repeat="comment in comments")
+                                strong.list-group-item-heading {{comment.sender}}
+                                span  on
+                                span.text-muted  {{comment.date | date: short}}
+                                .list-group-item-text.alert.alert-warning {{comment.body}}
+                        .list-group-item
+                            textarea.container-fluid.form-control(ng-model="comment.body")
+                        .list-group-item
+                            button.btn.btn-block.btn-info(type="button" ng-click="postComment(comment)") Post
             include message-modal
 hr
