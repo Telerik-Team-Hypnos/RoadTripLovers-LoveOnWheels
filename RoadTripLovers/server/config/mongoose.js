@@ -4,6 +4,7 @@ var country = require('../models/Country');
 var town = require('../models/Town');
 var page = require('../models/Page');
 var trip = require('../models/Trip');
+var message = require('../models/Message');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -26,4 +27,5 @@ module.exports = function(config) {
     country.seedInitial();
     town.seedInitial();
     page.seedInitial();
+	message.seedInitial();
 };
