@@ -40,7 +40,7 @@ appMain.config(function ($routeProvider) {
         templateUrl: "/partials/home/page-details"
     });
 
-    $routeProvider.when("/mange-trip/:id?", {
+    $routeProvider.when("/manage-trip/:id?", {
         controller: "ManageTripController",
         templateUrl: "/partials/trip/manage-trip"
     });
@@ -75,12 +75,6 @@ appMain.config(function ($routeProvider) {
         controller: "ManagePageController",
         templateUrl: "/partials/admin/manage-page"
     });
-
-//	$routeProvider.when("/search-users", {
-//		controller: "SearchUsersController",
-//		templateUrl: "/partials/account/profile"
-//	});
-
 
     $routeProvider.otherwise({ redirectTo: "/home" });
 });

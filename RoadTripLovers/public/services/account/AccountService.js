@@ -25,13 +25,15 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
                     localStorageService.set('authorizationData', {
                         username: user.username,
                         roles: response.user.roles,
-                        userId: response.user._id
+                        userId: response.user._id,
+                        isTruckDriver: response.user.isTruckDriver
                     });
 
                     authenticationData.isAuth = true;
                     authenticationData.username = user.username;
                     authenticationData.userId = response.user._id;
                     authenticationData.roles = response.user.roles;
+                    authenticationData.isTruckDriver = response.user.isTruckDriver;
 
                     deferred.resolve(response);
                 }else{
@@ -61,6 +63,7 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
             authenticationData.username = identityData.username;
             authenticationData.userId = identityData.userId;
             authenticationData.roles = identityData.roles;
+            authenticationData.isTruckDriver = identityData.isTruckDriver;
         }
     }
 
@@ -71,6 +74,7 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         authenticationData.username = "";
         authenticationData.userId = "";
         authenticationData.roles = [];
+        authenticationData.isTruckDriver = ""
     }
 
     function checkRole(role){

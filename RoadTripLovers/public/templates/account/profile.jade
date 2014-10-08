@@ -1,6 +1,5 @@
 .row
-    .col-md-2
-    .col-lg-8
+    .col-lg-6
         .well.bs-component
             form.form-horizontal.form-Login
                 legend Manage Profile
@@ -53,4 +52,16 @@
 
                 button.btn.btn-primary.btn-block(type='submit', data-ng-click='updateProfile()') Update Profile
             a.btn.btn-default.btn-sm.btn-block(href='#/') Cancel
-    .col-md-2
+    .col-md-6(ng-show="userData.isTruckDriver")
+        h1 My Trips
+            .pull-right
+                strong &nbsp;{{tripsCount}}
+        | Search:&nbsp;
+        input(type="text" ng-model="tripSearch")
+        hr
+        .bs-component
+            ul.list-group
+                li.list-group-item(ng-repeat="trip in trips | filter: tripSearch | orderBy:'name' | limitTo: 10")
+                    span.badge {{trip.startDate | date}} - {{trip.endDate | date}}
+                    a(href="#/manage-trip/{{trip._id}}") {{trip.startTown.name}} - {{trip.endTown.name}}
+        a.btn.btn-primary.btn-block(href='#/manage-trip') Add Trip

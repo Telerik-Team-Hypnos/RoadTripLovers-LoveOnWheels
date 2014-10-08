@@ -28,4 +28,5 @@ module.exports = function(config) {
     town.seedInitial();
     page.seedInitial();
 	message.seedInitial();
+    //trip.deleteAll();
 };

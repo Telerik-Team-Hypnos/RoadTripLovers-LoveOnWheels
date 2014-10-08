@@ -25,7 +25,7 @@ module.exports = {
         })
     },
     getAll: function(req, res) {
-        Trip.find({}).populate("towns").exec(function(err, collection) {
+        Trip.find({}).populate("startTown").populate("endTown").exec(function(err, collection) {
             if (err) {
                 console.log('Items could not be loaded: ' + err);
             }
@@ -34,9 +34,18 @@ module.exports = {
         })
     },
     getByUserId: function(req, res, next) {
-        Trip.findOne({user: req.params.user}).populate("towns").exec(function(err, result) {
+        Trip.find({user: req.params.user}).populate("startTown").populate("endTown").exec(function(err, result) {
             if (err) {
                 console.log('Items could not be loaded: ' + err);
+            }
+
+            res.send(result);
+        })
+    },
+    getById: function(req, res, next) {
+        Trip.findOne({_id: req.params.id}).exec(function(err, result) {
+            if (err) {
+                console.log('Item could not be loaded: ' + err);
             }
 
             res.send(result);

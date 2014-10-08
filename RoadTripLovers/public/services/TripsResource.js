@@ -15,6 +15,9 @@ appMain.factory('TripsResource', function ($q, httQ) {
         },
         getById: function (id) {
             return httQ.get(serviceUrl + "/" + id);
+        },
+        getByUser: function (id) {
+            return httQ.get(serviceUrl + "/byuser/" + id);
         }
     };
 });

@@ -34,7 +34,8 @@ module.exports = function(app) {
 
     // Trip Requests
     app.get('/api/trips', controllers.trips.getAll);
-    app.get('/api/trips/:user', controllers.trips.getByUserId);
+    app.get('/api/trips/:id', controllers.trips.getById);
+    app.get('/api/trips/byuser/:user', controllers.trips.getByUserId);
     app.post('/api/trips', controllers.trips.createItem);
     app.put('/api/trips', controllers.trips.updateItem);
 
