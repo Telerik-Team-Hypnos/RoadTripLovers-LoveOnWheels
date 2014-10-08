@@ -38,12 +38,13 @@ appMain.controller('UserDetailsController',
                     });
                     //messages
                     AccountService.checkIdentity();
+					$scope.messages={};
                     //show messages form
                     var currentUserId = response._id;
                     var logedUserId = AccountService.userData.userId;
                     $scope.loggedUserId = logedUserId;
-                    $scope.isMyProfile = (currentUserId === logedUserId);
-                    $scope.messages = {};
+                    $scope.isMyProfile = (currentUserId === logedUserId);                    
+					//send message function
                     $scope.messages.sendMessage = function () {
                         //do some validation here
                         var title = $scope.messages.title;
@@ -55,9 +56,16 @@ appMain.controller('UserDetailsController',
                             receiver: currentUserId
                         };
                         MessagesResource.addItem(req).then(function (responce) {
-                            $('#sendMessageModal').modal('hide');
+                            $('#send-message-modal').modal('hide');
                         });
                     };
+					//load messages, if the details page is the one for the loged user
+					if($scope.isMyProfile)
+					{
+						MessagesResource.getByReceiverId(logedUserId).then(function(responce){
+							$scope.logedUserMessages=responce;	
+						});						
+					}
                     //
                 });
         } else {

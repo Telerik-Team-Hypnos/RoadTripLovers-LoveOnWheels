@@ -7,6 +7,11 @@ appMain.factory('MessagesResource', function ($q, httQ) {
         /*getAll: function () {
             return httQ.get(serviceUrl);
         },*/
+		
+		getByReceiverId: function(userId/*page,filter*/){
+			return httQ.get(serviceUrl+'/'+userId);
+		},
+		
         addItem: function (data) {
             return httQ.post(serviceUrl, data);
         },
