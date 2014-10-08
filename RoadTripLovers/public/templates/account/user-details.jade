@@ -1,20 +1,21 @@
 .row#user-details-page
-    .col-md-12
-        h1 {{currentUser.username}}
-        h3.text-muted(ng-show="currentUser.isTruckDriver") Driver
-        hr
-        #messages
-            .row(ng-if="isMyProfile") messages list here
-            .row(ng-if="!isMyProfile")
-                .col-md-2
-                    ul.nav.nav-pills.nav-stacked
-                        li.active.text-center
-                            a(href="") Profile
-                        li.text-center
-                            a(href="") Photos
-                        li.text-center
-                            a(href="" data-toggle="modal" data-target="#sendMessageModal") Send Message
-                include personal-info
-                include comments
-            include send-message
+	.col-md-12
+		h1 {{currentUser.username}}
+		h3.text-muted(ng-show="currentUser.isTruckDriver") Driver
+	hr
+	.col-md-2
+		ul.nav.nav-pills.nav-stacked
+			li.active.text-center
+				a(href="") Profile
+			li.text-center
+				a(href="") Photos
+			li.text-center
+				a(href="" ng-if="!isMyProfile" data-toggle="modal" data-target="#send-message-modal") Send Message
+				a(href="" ng-if="isMyProfile" data-toggle="modal" data-target="#view-messages-modal") Messages
+	include personal-info
+	include comments
+	#send-message-container(ng-if="!isMyProfile")
+		include send-message
+	#view-messages-container(ng-if="isMyProfile")
+		include view-messages
 hr

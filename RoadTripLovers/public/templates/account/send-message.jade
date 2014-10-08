@@ -1,11 +1,12 @@
-.modal.fade#sendMessageModal(role="dialog" aria-hidden="true")
-    .modal-dialog
-        .modal-content
-            .modal-header
-                button.close(data-dismiss="modal") x
-                input.modal-title(type="text" ng-model="messages.title" placeholder="Add Title...")
-            .modal-body
-                textarea.form-control.container-fluid(rows="4" ng-model="messages.body" placeholder="Your message goes here...")
-            .modal-footer
-                button.btn.btn-default(data-dismiss="modal") Close
-                button.btn.btn-primary(ng-click="messages.sendMessage()") Send
+.modal.fade#send-message-modal(role="dialog" aria-hidden="true")
+	.modal-dialog
+		.modal-content
+			form(ng-submit="messages.sendMessage()")
+				.modal-header
+					button.close(data-dismiss="modal") x
+					input.modal-title(type="text" ng-model="messages.title" placeholder="Add Title...")
+				.modal-body
+					textarea.form-control.container-fluid(rows="4" ng-model="messages.body" required="required" placeholder="Your message goes here...")
+				.modal-footer
+					button.btn.btn-default(data-dismiss="modal") Close
+					button.btn.btn-primary Send
