@@ -2,19 +2,21 @@
 	.col-md-12
 		h1 {{currentUser.username}}
 		hr
-	.row#messages-row
-		.col-md-12
-			.well.bs-component
-				form#send-message-form.form-horizontal(ng-if="isNotMyProfile" ng-submit="sendMessage()")
-					legend Send message
-					.form-group
-						label.col-lg-2.control-label Title
-						.col-lg-10 
-							input#title.form-control(ng-model="messages.title" type="text" placeholder="Whats on your mind...")
-					.form-group
-						label.col-lg-2.control-label Message:
-						.col-lg-10 
-							textarea#body.form-control(ng-model="messages.body" required="required" placeholder="Blah, blah, blah...")				
-					button.btn.btn-primary.btn-block(type="submit") Send message
-			hr
+		#messages
+			.row(ng-if="isMyProfile") messages list here
+			.row(ng-if="!isMyProfile")
+				.col-md-12
+					.well.bs-component
+						form#send-message-form.form-horizontal(ng-submit="messages.sendMessage()")
+							legend Send message
+							.form-group
+								label.col-lg-2.control-label Title
+								.col-lg-10 
+									input#title.form-control(ng-model="messages.title" type="text" placeholder="Whats on your mind...")
+							.form-group
+								label.col-lg-2.control-label Message:
+								.col-lg-10 
+									textarea#body.form-control(ng-model="messages.body" required="required" placeholder="Blah, blah, blah...") 				
+							button.btn.btn-primary.btn-block(type="submit") Send message
+	hr
 	p Hello there!
