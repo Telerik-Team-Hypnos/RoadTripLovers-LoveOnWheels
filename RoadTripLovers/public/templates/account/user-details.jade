@@ -14,10 +14,7 @@
                             a(href="") Photos
                         li.text-center
                             a(href="" data-toggle="modal" data-target="#sendMessageModal") Send Message
-                include user-info
-                .col-md-5
-                    input(type="text" ng-model="comment.title")
-                    textarea(ng-model="comment.body")
-                    button(ng-click="postComment(comment)") Post
-            include message-modal
+                include personal-info
+                include comments
+            include send-message
 hr

@@ -25,9 +25,10 @@ module.exports = {
         })
     },
     getByReceiver: function(req, res){
-        Comment.findOne({receiver: req.params.id}).exec(function(err, result) {
+        Comment.find({receiver: req.params.id}).populate("receiver").exec(function(err, result) {
             if (err) {
                 console.log('Comments could not be loaded: ' + err);
+                return;
             }
 
             res.send(result);

@@ -3,9 +3,9 @@
         .modal-content
             .modal-header
                 button.close(data-dismiss="modal") x
-                input.modal-title(type="text" ng-model="messages.title" placeholder="Message Title...")
+                input.modal-title(type="text" ng-model="messages.title" placeholder="Add Title...")
             .modal-body
-                textarea.form-control.container-fluid(rows="4" ng-model="messages.body")
+                textarea.form-control.container-fluid(rows="4" ng-model="messages.body" placeholder="Your message goes here...")
             .modal-footer
                 button.btn.btn-default(data-dismiss="modal") Close
                 button.btn.btn-primary(ng-click="messages.sendMessage()") Send
