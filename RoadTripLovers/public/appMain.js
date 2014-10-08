@@ -32,7 +32,7 @@ appMain.config(function ($routeProvider) {
 
     $routeProvider.when("/user-details/:id", {
         controller: "UserDetailsController",
-        templateUrl: "/partials/home/user-details"
+        templateUrl: "/partials/account/user-details"
     });
 
     $routeProvider.when("/page-details/:id", {

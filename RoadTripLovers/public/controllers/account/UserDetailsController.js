@@ -2,19 +2,14 @@
 
 appMain.controller('UserDetailsController',
     function ($scope, $location, $routeParams, AccountService, MessagesResource, TownsResource, CommentsResource) {
-        $scope.messageBoxVisible = true;
 
-        $scope.showMessageBox = function () {
-            $scope.messageBoxVisible = true;
-        }
+        $scope.newComment = {
+            body: ''
+        };
 
-        $scope.hideMessageBox = function () {
-            $scope.messageBoxVisible = false;
-        }
-
-        $scope.postComment = function (comment) {
+        $scope.postComment = function () {
             var data = {
-                body: comment.body,
+                body: $scope.newComment.body,
                 date: new Date(),
                 sender: $scope.loggedUserId,
                 receiver: $scope.currentUser._id
@@ -22,22 +17,15 @@ appMain.controller('UserDetailsController',
 
             CommentsResource.addItem(data).then(function (success) {
                 $scope.comments.push(success);
-                scrollToBottom();
+                $scope.newComment.body = '';
             }, function (error) {
                 console.log(error);
             })
         }
 
         CommentsResource.getByReceiver($routeParams.id).then(function (results) {
-            console.log(results);
             $scope.comments = results;
-            scrollToBottom();
         });
-
-        function scrollToBottom(){
-            var objDiv = document.getElementById("comments");
-            objDiv.scrollTop = objDiv.scrollHeight;
-        }
 
         if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
             AccountService.getById($routeParams.id)

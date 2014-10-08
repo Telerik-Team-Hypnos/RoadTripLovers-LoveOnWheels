@@ -31,7 +31,6 @@ module.exports = {
                 return;
             }
 
-            console.log(req.params.id);
             res.send(result);
         })
     }

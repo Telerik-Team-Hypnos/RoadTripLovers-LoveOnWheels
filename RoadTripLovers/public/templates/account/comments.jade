@@ -1,0 +1,13 @@
+.col-md-5
+    .list-group
+        h3.list-group-item.active.text-center Comments
+        #comments.list-group-item
+            .list-group-item(ng-repeat="comment in comments | orderBy: '-date'")
+                strong.list-group-item-heading {{comment.sender}}
+                span  on
+                span.text-muted  {{comment.date | date: short}}
+                .list-group-item-text.alert.alert-warning {{comment.body}}
+        .list-group-item
+            textarea.container-fluid.form-control(ng-model="newComment.body")
+        .list-group-item
+            button.btn.btn-block.btn-info(type="button" ng-click="postComment()") Post
