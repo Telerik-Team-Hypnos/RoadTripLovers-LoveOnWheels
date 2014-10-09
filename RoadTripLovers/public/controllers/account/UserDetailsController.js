@@ -8,8 +8,13 @@ appMain.controller('UserDetailsController',
             $scope.newComment = {
                 body: ''
             };
-			//
+			//select default page to show
 			$scope.detailsPage='profile';
+			//photos
+			$scope.photos={};
+			$scope.photos.uploadPhoto=function(){
+				alert('here!');
+			}
 			//
             $scope.postComment = function () {
                 var data = {

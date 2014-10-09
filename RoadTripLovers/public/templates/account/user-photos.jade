@@ -1,4 +1,11 @@
-#photos-upload-form
-	photo upload form here...
-#photos-list
+.col-md-6
 	photo list here..
+.col-md-4
+	.list-group
+		h3.list-group-item.active.text-center Upload a new photo
+		.list-group-item
+			form(ng-submit="photos.uploadPhoto()")
+				.form-group
+					label Select a photo
+					input(type='file')
+				button.btn.btn-primary Upload
