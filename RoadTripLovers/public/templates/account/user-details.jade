@@ -5,9 +5,9 @@
 	hr
 	.col-md-2
 		ul.nav.nav-pills.nav-stacked
-			li.active.text-center
+			li(ng-class="{true: 'text-center active', false: 'text-center'}[detailsPage === 'profile']")
 				a(href="" ng-click="detailsPage='profile'") Profile
-			li.text-center
+			li(ng-class="{true: 'text-center active', false: 'text-center'}[detailsPage === 'photos']")
 				a(href="" ng-click="detailsPage='photos'") Photos
 			li.text-center
 				a(href="" ng-if="!isMyProfile" data-toggle="modal" data-target="#send-message-modal") Send Message
