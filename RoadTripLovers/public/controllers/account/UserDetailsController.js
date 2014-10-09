@@ -32,18 +32,22 @@ appMain.controller('UserDetailsController',
             AccountService.getById($routeParams.id)
                 .then(function (response) {
                     $scope.currentUser = response;
+
                     TownsResource.getById(response.town).then(function (town) {
                         $scope.currentUser.town = town.name;
                         //$scope.currentUser.country = town.country.name;
                     });
+
                     //messages
                     AccountService.checkIdentity();
 					$scope.messages={};
+
                     //show messages form
                     var currentUserId = response._id;
                     var logedUserId = AccountService.userData.userId;
                     $scope.loggedUserId = logedUserId;
-                    $scope.isMyProfile = (currentUserId === logedUserId);                    
+                    $scope.isMyProfile = (currentUserId === logedUserId);
+
 					//send message function
                     $scope.messages.sendMessage = function () {
                         //do some validation here
@@ -59,14 +63,15 @@ appMain.controller('UserDetailsController',
                             $('#send-message-modal').modal('hide');
                         });
                     };
+
 					//load messages, if the details page is the one for the loged user
 					if($scope.isMyProfile)
 					{
-						MessagesResource.getByReceiverId(logedUserId).then(function(responce){
+						MessagesResource.getNewByReceiverId(logedUserId).then(function(responce){
+                            console.log(responce);
 							$scope.logedUserMessages=responce;	
 						});						
 					}
-                    //
                 });
         } else {
             $location.path('/');

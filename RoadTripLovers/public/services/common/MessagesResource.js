@@ -11,10 +11,14 @@ appMain.factory('MessagesResource', function ($q, httQ) {
 		getByReceiverId: function(userId/*page,filter*/){
 			return httQ.get(serviceUrl+'/'+userId);
 		},
+
+        getNewByReceiverId: function(userId){
+            return httQ.get(serviceUrl + '/new/' + userId);
+        },
 		
         addItem: function (data) {
             return httQ.post(serviceUrl, data);
-        },
+        }
         /*editItem: function (data) {
             return httQ.put(serviceUrl, data);
         },

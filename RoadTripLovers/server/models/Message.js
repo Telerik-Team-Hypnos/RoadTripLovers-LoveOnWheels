@@ -4,6 +4,7 @@ var itemSchema=mongoose.Schema({
 	title:String,
 	body:String,
 	postTime: String,
+    isRead: Boolean,
 	sender:{
 		type: mongoose.Schema.Types.ObjectId,
 		ref:'User'
@@ -28,6 +29,7 @@ module.exports.seedInitial = function() {
             Message.create({
                 title: "new Message",
                 body: "Blah, blah, blah...",
+                isRead:false,
 				postTime:"just now...",
 				sender:null,
 				receiver:null
