@@ -3,37 +3,32 @@
 appMain.controller('UserDetailsController',
     function ($scope, $location, $routeParams, AccountService, MessagesResource, TownsResource, CommentsResource) {
 
-		if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
-			
-				$scope.newComment = {
-				body: ''
-			};
+        if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
 
-            $scope.resetMessageForm = function(){
-                $scope.messages.body = '';
-                $scope.messages.title = '';
+            $scope.newComment = {
+                body: ''
+            };
+
+            $scope.postComment = function () {
+                var data = {
+                    body: $scope.newComment.body,
+                    date: new Date(),
+                    sender: $scope.loggedUserId,
+                    receiver: $scope.currentUser._id
+                }
+
+                CommentsResource.addItem(data).then(function (success) {
+                    $scope.comments.push(success);
+                    $scope.newComment.body = '';
+                }, function (error) {
+                    console.log(error);
+                })
             }
 
-			$scope.postComment = function () {
-				var data = {
-					body: $scope.newComment.body,
-					date: new Date(),
-					sender: $scope.loggedUserId,
-					receiver: $scope.currentUser._id
-				}
+            CommentsResource.getByReceiver($routeParams.id).then(function (results) {
+                $scope.comments = results;
+            });
 
-				CommentsResource.addItem(data).then(function (success) {
-					$scope.comments.push(success);
-					$scope.newComment.body = '';
-				}, function (error) {
-					console.log(error);
-				})
-			}
-
-			CommentsResource.getByReceiver($routeParams.id).then(function (results) {
-				$scope.comments = results;
-			});
-			
             AccountService.getById($routeParams.id)
                 .then(function (response) {
                     $scope.currentUser = response;
@@ -45,7 +40,7 @@ appMain.controller('UserDetailsController',
 
                     //messages
                     AccountService.checkIdentity();
-					$scope.messages={};
+                    $scope.messages = {};
 
                     //show messages form
                     var currentUserId = response._id;
@@ -53,14 +48,13 @@ appMain.controller('UserDetailsController',
                     $scope.loggedUserId = logedUserId;
                     $scope.isMyProfile = (currentUserId === logedUserId);
 
-                    $scope.loadOlderMessages = function(){
-                        MessagesResource.getByReceiverId(logedUserId).then(function(response){
-                            console.log(response);
-                            $scope.logedUserMessages=response;
+                    $scope.loadOlderMessages = function () {
+                        MessagesResource.getByReceiverId(logedUserId).then(function (response) {
+                            $scope.logedUserMessages = response;
                         });
                     }
 
-					//send message function
+                    //send message function
                     $scope.messages.sendMessage = function () {
                         //do some validation here
                         var title = $scope.messages.title;
@@ -73,18 +67,22 @@ appMain.controller('UserDetailsController',
                         };
                         MessagesResource.addItem(req).then(function (response) {
                             $('#send-message-modal').modal('hide');
-                            $scope.resetMessageForm();
+                            $scope.messages.body = '';
+                            $scope.messages.title = '';
                         });
                     };
 
-					//load messages, if the details page is the one for the logged user
-					if($scope.isMyProfile)
-					{
-						MessagesResource.getNewByReceiverId(logedUserId).then(function(response){
+                    //load messages, if the details page is the one for the logged user
+                    if ($scope.isMyProfile) {
+                        MessagesResource.getNewByReceiverId(logedUserId).then(function (response) {
                             $scope.unreadCount = response.length;
-							$scope.logedUserMessages=response;
-						});						
-					}
+                            $scope.logedUserMessages = response;
+
+                            if (response.length === 0) {
+                                $scope.loadOlderMessages();
+                            }
+                        });
+                    }
                 });
         } else {
             $location.path('/');
