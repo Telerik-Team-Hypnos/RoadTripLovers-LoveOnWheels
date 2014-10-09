@@ -28,4 +28,4 @@
                             span {{user.town.name}}
                         p(ng-show="user.birthDate") Born:
                             span {{user.birthDate | transformDate}}
-                li.no-users-found(ng-hide="users | filter: {isTruckDriver:false} | filter:userSearch") No users match the search
+                li.no-users-found(ng-hide="trips | filter:userSearch") No users match the search
