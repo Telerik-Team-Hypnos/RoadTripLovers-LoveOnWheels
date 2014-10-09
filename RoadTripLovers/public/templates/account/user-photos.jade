@@ -7,5 +7,5 @@
 			form(ng-submit="photos.uploadPhoto()")
 				.form-group
 					label Select a photo
-					input(type='file')
+					input(type='file' name='new-photo' ng-model='photos.newPhoto')
 				button.btn.btn-primary Upload

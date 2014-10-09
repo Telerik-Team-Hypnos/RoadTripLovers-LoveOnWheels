@@ -49,8 +49,8 @@ module.exports = function(app) {
     app.post('/api/comments', controllers.comments.createItem);
 
     // Photo Requests
-    app.post('/upload', auth.isAuthenticated, controllers.photos.upload);
-    app.get('/upload/:user', controllers.photos.getByUser);
+    app.post('/api/images/upload', auth.isAuthenticated, controllers.photos.upload);
+    app.get('/api/images/:user', controllers.photos.getByUser);
 	
     app.get('/api/*', function(req, res) {
         res.status(404);

@@ -1,7 +1,7 @@
 'use strict';
 
 appMain.controller('UserDetailsController',
-    function ($scope, $location, $routeParams, AccountService, MessagesResource, TownsResource, CommentsResource) {
+    function ($scope, $location, $routeParams, AccountService, MessagesResource, TownsResource, CommentsResource, PhotosResource) {
 
         if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
 
@@ -15,6 +15,9 @@ appMain.controller('UserDetailsController',
 			$scope.photos.collection=[];
 			$scope.photos.uploadPhoto=function(){
 				alert('here!');
+				PhotosResource.uploadPhoto({newPhoto:$scope.photos.newPhoto}).then(function(result){
+					console.log(result);	
+				});
 			}
 			//
             $scope.postComment = function () {
