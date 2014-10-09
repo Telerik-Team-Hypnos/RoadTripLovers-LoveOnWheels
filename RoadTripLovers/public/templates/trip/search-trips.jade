@@ -1,1 +1,38 @@
-{{trips}}
+.row
+    .col-md-12
+        h1 Search Trips
+        hr
+        .row
+            .col-md-2
+                | By Driver:&nbsp;
+                input(type="text" ng-model="tripDriver" ng-change="filterTrips()")
+            .col-md-2.selector
+                | By Start Town:&nbsp;
+                select(class="search-select" ng-model="tripStartTown" ng-change="filterTrips()" ng-options="town.name for town in towns")
+            .col-md-2
+                | By End Town:&nbsp;
+                select(class="search-select" ng-model="tripEndTown" ng-change="filterTrips()" ng-options="town.name for town in towns")
+            .col-md-2
+                | Order by Date:&nbsp;
+                select(class="search-select" ng-model="tripOrder" ng-change="filterTrips()" ng-options="order for order in orders")
+        hr
+        .bs-component
+            ul.list-group.search-results
+                li.list-group-item(ng-repeat="trip in trips" class="user-more-info")
+                    img(class="home-page-portret" src="{{trip.user.profilePhoto ? trip.user.profilePhoto : 'http://www.xor.org.uk/travel/panam2006/graphicsf/img_8783.jpg'}}")
+                    div
+                        p Trip by:
+                            a#trip-user-link(href="#/user-details/{{trip.user._id}}") {{trip.user.username}}
+                                img#trip-gender-pic(src="{{trip.user.sex | transformGender}}")
+                        p From:
+                            span {{trip.startTown.name}}
+                        p To:
+                            span {{trip.endTown.name}}
+                        p Start date:
+                            span {{trip.startDate | transformDate}}
+                        p End date:
+                            span {{trip.endDate | transformDate}}
+                li.no-users-found(ng-hide="trips.length") No trips match the search
+
+//
+//{{trips}}

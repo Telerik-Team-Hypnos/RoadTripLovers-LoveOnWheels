@@ -117,3 +117,17 @@ a.get-more{
 .search-results li:nth-of-type(even){
 	background-color: lightgray;
 }
+
+/*Search trips*/
+#trip-gender-pic{
+	display: inline-block;
+	margin-left: 10px;
+	width: 30px;
+	height: 30px;
+}
+
+#trip-user-link{
+	padding-left: 15px;
+	font-size: 1.4em;
+	text-transform: capitalize;
+}
