@@ -13,7 +13,7 @@ module.exports = {
             var extension = filename.split(".")[1];
             myFile.url = url;
 
-            var path = __dirname + '/../../public/userimages/' + req.user.username + "." + extension;
+            var path = __dirname + '/../../public/userimages/' + req.user.username + ".jpg";
 
             if (fs.existsSync(path)) {
                 fs.unlinkSync(path);
@@ -32,7 +32,7 @@ module.exports = {
                 })
                     .save(function() {
 
-                        res.send(true);
+                        res.redirect("/#/user-details/" + req.user._id);
                     });
             });
         });

@@ -1,6 +1,6 @@
 .col-md-5
-    div(ng-show="currentUser.profilePhoto")
-        img(src="currentUser.profilePhoto")
+    div
+        img(style="width:400px", src="/userimages/{{currentUser.username}}.jpg")
     div(ng-show="currentUser.firstName || currentUser.lastName")
         span.text-muted.lead Name:
         span.lead  {{currentUser.firstName}} {{currentUser.lastName}}

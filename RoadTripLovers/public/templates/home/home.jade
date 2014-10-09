@@ -6,7 +6,7 @@
         .bs-component
             ul.list-group
                 li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:false}| filter:userSearch | orderBy:'username' | limitTo: 10" class="user-info")
-                    img(class="home-page-portret" src="{{user.profilePhoto ? user.profilePhoto : 'http://images.fineartamerica.com/images-medium-large/sexy-truck-driver-jim-boardman.jpg'}}")
+                    img(class="home-page-portret", src="/userimages/{{user.username}}.jpg")
                     div
                         a(href="#/user-details/{{user._id}}") {{user.username}}
                             img(src="{{user.sex | transformGender}}")
@@ -20,7 +20,7 @@
         .bs-component
             ul.list-group
                 li.list-group-item(ng-repeat="user in users | filter: {isTruckDriver:true}| orderBy:'username' | limitTo: 10" class="user-info")
-                    img(class="home-page-portret" src="{{user.profilePhoto ? user.profilePhoto : 'http://www.xor.org.uk/travel/panam2006/graphicsf/img_8783.jpg'}}")
+                    img(class="home-page-portret", src="/userimages/{{user.username}}.jpg")
                     div
                         a(href="#/user-details/{{user._id}}") {{user.username}}
                             img(src="{{user.sex | transformGender}}")
