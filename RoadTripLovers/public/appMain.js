@@ -55,6 +55,11 @@ appMain.config(function ($routeProvider) {
         templateUrl: "/partials/home/search-drivers"
     });
 
+    $routeProvider.when("/trips/", {
+        controller: "TripsController",
+        templateUrl: "/partials/trip/search-trips"
+    });
+
     // Admin Stuff
     $routeProvider.when("/admin-panel", {
         controller: "AdminPanelController",
