@@ -6,14 +6,14 @@
                 li(data-ng-show='userData.isAuth')
                     a(href='#/trips') Trips
                 li(data-ng-show='userData.isAuth')
-                    a(href='#/profile') My Profile
+                    a(href='#/user-details/{{userData.userId}}') My Profile
                 li(ng-show="checkRole('admin')")
                     a(href="#/admin-panel") Admin Panel
 
         .collapse.navbar-collapse(data-collapse='!navbarExpanded')
             ul.nav.navbar-nav.navbar-right
                 li(data-ng-show='userData.isAuth')
-                    a(href='#/profile') Welcome, {{userData.username}}
+                    a(href='#/user-details/{{userData.userId}}') Welcome, {{userData.username}}
                 li(data-ng-show='userData.isAuth')
                     a(href='', data-ng-click='logOut()') Logout
                 li(data-ng-show='!userData.isAuth')
