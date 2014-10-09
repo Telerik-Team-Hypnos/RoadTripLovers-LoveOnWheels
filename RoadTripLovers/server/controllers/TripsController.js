@@ -19,13 +19,14 @@ module.exports = {
     updateItem: function(req, res) {
 
         var itemToUpdate = req.body;
+        console.log(req.body);
 
-        Trip.update({_id: req.body._id}, itemToUpdate, function() {
+        Trip.update({_id: req.body._id}, itemToUpdate, function(err) {
             res.end();
         })
     },
     getAll: function(req, res) {
-        Trip.find({}).populate("user").populate("startTown").populate("endTown").exec(function(err, collection) {
+        Trip.find({}).populate("user").populate("endTown").populate("startTown").exec(function(err, collection) {
             if (err) {
                 console.log('Items could not be loaded: ' + err);
             }
@@ -34,7 +35,7 @@ module.exports = {
         })
     },
     getByUserId: function(req, res, next) {
-        Trip.find({user: req.params.user}).populate("user").populate("startTown").populate("endTown").exec(function(err, result) {
+        Trip.find({user: req.params.user}).populate("user").populate("endTown").populate("startTown").exec(function(err, result) {
             if (err) {
                 console.log('Items could not be loaded: ' + err);
             }
@@ -43,7 +44,7 @@ module.exports = {
         })
     },
     getById: function(req, res, next) {
-        Trip.findOne({_id: req.params.id}).populate("user").populate("startTown").populate("endTown").exec(function(err, result) {
+        Trip.findOne({_id: req.params.id}).populate("user").populate("endTown").populate("startTown").exec(function(err, result) {
             if (err) {
                 console.log('Item could not be loaded: ' + err);
             }

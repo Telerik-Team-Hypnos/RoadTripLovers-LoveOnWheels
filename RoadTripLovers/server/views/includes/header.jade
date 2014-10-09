@@ -13,7 +13,7 @@
         .collapse.navbar-collapse(data-collapse='!navbarExpanded')
             ul.nav.navbar-nav.navbar-right
                 li(data-ng-show='userData.isAuth')
-                    a(href='#/user-details/{{userData.userId}}') Welcome, {{userData.username}}
+                    a(href='#/profile') Welcome, {{userData.username}}
                 li(data-ng-show='userData.isAuth')
                     a(href='', data-ng-click='logOut()') Logout
                 li(data-ng-show='!userData.isAuth')
