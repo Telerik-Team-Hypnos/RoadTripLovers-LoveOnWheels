@@ -9,6 +9,10 @@ appMain.controller('UserDetailsController',
 				body: ''
 			};
 
+            $scope.resetMessageForm = function(){
+                $scope.messages.body = '';
+                $scope.messages.title = '';
+            }
 
 			$scope.postComment = function () {
 				var data = {
@@ -50,8 +54,9 @@ appMain.controller('UserDetailsController',
                     $scope.isMyProfile = (currentUserId === logedUserId);
 
                     $scope.loadOlderMessages = function(){
-                        MessagesResource.getByReceiverId(logedUserId).then(function(responce){
-                            $scope.logedUserMessages=responce;
+                        MessagesResource.getByReceiverId(logedUserId).then(function(response){
+                            console.log(response);
+                            $scope.logedUserMessages=response;
                         });
                     }
 
@@ -66,17 +71,18 @@ appMain.controller('UserDetailsController',
                             sender: logedUserId,
                             receiver: currentUserId
                         };
-                        MessagesResource.addItem(req).then(function (responce) {
+                        MessagesResource.addItem(req).then(function (response) {
                             $('#send-message-modal').modal('hide');
+                            $scope.resetMessageForm();
                         });
                     };
 
 					//load messages, if the details page is the one for the logged user
 					if($scope.isMyProfile)
 					{
-						MessagesResource.getNewByReceiverId(logedUserId).then(function(responce){
-                            $scope.unreadCount = responce.length;
-							$scope.logedUserMessages=responce;	
+						MessagesResource.getNewByReceiverId(logedUserId).then(function(response){
+                            $scope.unreadCount = response.length;
+							$scope.logedUserMessages=response;
 						});						
 					}
                 });

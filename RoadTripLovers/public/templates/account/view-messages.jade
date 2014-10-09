@@ -5,8 +5,14 @@
                 span Messages
                 button.close(data-dismiss="modal") x
             .modal-body
-                ul#view-user-mesages
-                    li(ng-repeat="message in logedUserMessages") {{message.sender.username}} on {{message.postTime}} : {{message.title}} - {{message.body}}
+                .list-group#view-user-messages
+                    .list-group-item(ng-repeat="message in logedUserMessages | orderBy: '-postTime'")
+                        .lead Title: {{message.title}}
+                        span by
+                        strong.list-group-item-heading  {{message.sender.username}}
+                        span  on
+                        span.text-muted  {{message.postTime | date: 'medium'}}
+                        .list-group-item-text.alert.alert-warning {{message.body}}
                 a(href="" ng-click="loadOlderMessages()") Older..
             .modal-footer
                 button.btn.btn-default(data-dismiss="modal") Close

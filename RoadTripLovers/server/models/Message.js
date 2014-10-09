@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var itemSchema=mongoose.Schema({
 	title:String,
 	body:String,
-	postTime: String,
+	postTime: Date,
     isRead: Boolean,
 	sender:{
 		type: mongoose.Schema.Types.ObjectId,
@@ -30,7 +30,7 @@ module.exports.seedInitial = function() {
                 title: "new Message",
                 body: "Blah, blah, blah...",
                 isRead:false,
-				postTime:"just now...",
+				postTime: new Date(),
 				sender:null,
 				receiver:null
             });            

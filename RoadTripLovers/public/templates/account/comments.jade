@@ -3,7 +3,7 @@
         h3.list-group-item.active.text-center Comments
         #comments.list-group-item
             .list-group-item(ng-repeat="comment in comments | orderBy: '-date'")
-                strong.list-group-item-heading {{comment.sender}}
+                strong.list-group-item-heading {{comment.sender.username}}
                 span  on
                 span.text-muted  {{comment.date | date: short}}
                 .list-group-item-text.alert.alert-warning {{comment.body}}
