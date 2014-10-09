@@ -1,7 +1,7 @@
 .col-md-6
-	photo list here..
+	h3(ng-if="photos.collection.length===0") No images uploaded!
 .col-md-4
-	.list-group
+	.list-group(ng-if="isMyProfile")
 		h3.list-group-item.active.text-center Upload a new photo
 		.list-group-item
 			form(ng-submit="photos.uploadPhoto()")

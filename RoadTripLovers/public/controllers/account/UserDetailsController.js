@@ -12,6 +12,7 @@ appMain.controller('UserDetailsController',
 			$scope.detailsPage='profile';
 			//photos
 			$scope.photos={};
+			$scope.photos.collection=[];
 			$scope.photos.uploadPhoto=function(){
 				alert('here!');
 			}
