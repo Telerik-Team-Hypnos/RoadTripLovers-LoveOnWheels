@@ -23,5 +23,29 @@ module.exports = {
 
             res.send('Message sent.');
         });
+    },
+	
+	getByReceiverId: function(req, res, next) {
+       Message.find({receiver: req.params.id}).exec(function(err, result) {
+            if (err) {
+                console.log('User could not be loaded: ' + err);
+            }				
+			//
+			var cResult={
+				title:result.title,
+				body:result.body,
+				postTime:result.postTime			
+			};
+			//
+			User.findOne({_id: result.sender}).exec(function(err, senderUser) {
+				if (err) {
+					console.log('User could not be loaded: ' + err);
+				}
+				//
+				cResult.sender=senderUser;
+			});
+			//			
+            res.send(cResult);
+        })
     }
 };

@@ -3,31 +3,32 @@
 appMain.controller('UserDetailsController',
     function ($scope, $location, $routeParams, AccountService, MessagesResource, TownsResource, CommentsResource) {
 
-        $scope.newComment = {
-            body: ''
-        };
+		if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
+			
+				$scope.newComment = {
+				body: ''
+			};
 
-        $scope.postComment = function () {
-            var data = {
-                body: $scope.newComment.body,
-                date: new Date(),
-                sender: $scope.loggedUserId,
-                receiver: $scope.currentUser._id
-            }
+			$scope.postComment = function () {
+				var data = {
+					body: $scope.newComment.body,
+					date: new Date(),
+					sender: $scope.loggedUserId,
+					receiver: $scope.currentUser._id
+				}
 
-            CommentsResource.addItem(data).then(function (success) {
-                $scope.comments.push(success);
-                $scope.newComment.body = '';
-            }, function (error) {
-                console.log(error);
-            })
-        }
+				CommentsResource.addItem(data).then(function (success) {
+					$scope.comments.push(success);
+					$scope.newComment.body = '';
+				}, function (error) {
+					console.log(error);
+				})
+			}
 
-        CommentsResource.getByReceiver($routeParams.id).then(function (results) {
-            $scope.comments = results;
-        });
-
-        if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
+			CommentsResource.getByReceiver($routeParams.id).then(function (results) {
+				$scope.comments = results;
+			});
+			
             AccountService.getById($routeParams.id)
                 .then(function (response) {
                     $scope.currentUser = response;
@@ -37,12 +38,13 @@ appMain.controller('UserDetailsController',
                     });
                     //messages
                     AccountService.checkIdentity();
+					$scope.messages={};
                     //show messages form
                     var currentUserId = response._id;
                     var logedUserId = AccountService.userData.userId;
                     $scope.loggedUserId = logedUserId;
-                    $scope.isMyProfile = (currentUserId === logedUserId);
-                    $scope.messages = {};
+                    $scope.isMyProfile = (currentUserId === logedUserId);                    
+					//send message function
                     $scope.messages.sendMessage = function () {
                         //do some validation here
                         var title = $scope.messages.title;
@@ -54,9 +56,16 @@ appMain.controller('UserDetailsController',
                             receiver: currentUserId
                         };
                         MessagesResource.addItem(req).then(function (responce) {
-                            $('#sendMessageModal').modal('hide');
+                            $('#send-message-modal').modal('hide');
                         });
                     };
+					//load messages, if the details page is the one for the loged user
+					if($scope.isMyProfile)
+					{
+						MessagesResource.getByReceiverId(logedUserId).then(function(responce){
+							$scope.logedUserMessages=responce;	
+						});						
+					}
                     //
                 });
         } else {

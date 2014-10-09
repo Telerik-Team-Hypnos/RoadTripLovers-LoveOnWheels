@@ -40,7 +40,8 @@ module.exports = function(app) {
     app.put('/api/trips', controllers.trips.updateItem);
 
 	//Messages Requests
-	app.post('/api/messages/',controllers.messages.createItem);
+	app.get('/api/messages/:id',controllers.messages.getByReceiverId);
+	app.post('/api/messages/',controllers.messages.createItem);	
 
     // Comments Requests
     app.get('/api/comments/:id', controllers.comments.getByReceiver);
