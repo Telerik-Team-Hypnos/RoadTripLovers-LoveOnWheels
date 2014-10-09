@@ -66,7 +66,7 @@ module.exports.seedInitialUsers = function() {
 
 			User.create({
                 username: 'vladko_draivera',
-                firstName: 'Volodq',
+                firstName: 'Volodqs',
                 lastName: 'Kolarq',
                 motto: '6te te vozq',
                 isTruckDriver: true,

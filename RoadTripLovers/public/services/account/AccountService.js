@@ -85,6 +85,7 @@ appMain.factory('AccountService', function ($q, httQ, localStorageService) {
         var identityData = localStorageService.get('authorizationData');
         identityData.isTruckDriver = profileData.isTruckDriver;
         authenticationData.isTruckDriver = profileData.isTruckDriver;
+
         return httQ.put('/api/users/', profileData);
     }
 

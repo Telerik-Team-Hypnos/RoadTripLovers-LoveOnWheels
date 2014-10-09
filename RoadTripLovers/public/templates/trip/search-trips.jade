@@ -19,7 +19,7 @@
         .bs-component
             ul.list-group.search-results
                 li.list-group-item(ng-repeat="trip in trips" class="user-more-info")
-                    img(class="home-page-portret" src="{{trip.user.profilePhoto ? trip.user.profilePhoto : 'http://www.xor.org.uk/travel/panam2006/graphicsf/img_8783.jpg'}}")
+                    img(class="home-page-portret", src="/userimages/{{trip.user.username}}.jpg")
                     div
                         p Trip by:
                             a#trip-user-link(href="#/user-details/{{trip.user._id}}") {{trip.user.username}}

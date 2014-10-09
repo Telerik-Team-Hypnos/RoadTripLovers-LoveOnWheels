@@ -23,7 +23,7 @@ appMain.controller('ManageProfileController', function ($scope, $location, $rout
     $scope.updateProfile = function () {
         AccountService.editUserProfile($scope.profileData)
             .then(function () {
-                $location.path("/profile")
+                $location.path("/")
             });
     }
 });
