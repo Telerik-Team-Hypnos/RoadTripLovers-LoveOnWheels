@@ -8,7 +8,9 @@ appMain.controller('UserDetailsController',
             $scope.newComment = {
                 body: ''
             };
-
+			//
+			$scope.detailsPage='profile';
+			//
             $scope.postComment = function () {
                 var data = {
                     body: $scope.newComment.body,
