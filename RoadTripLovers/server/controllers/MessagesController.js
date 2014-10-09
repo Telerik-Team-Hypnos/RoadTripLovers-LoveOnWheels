@@ -27,7 +27,9 @@ module.exports = {
     },
 
     getByReceiverId: function (req, res, next) {
-        Message.find({receiver: req.params.id}).populate('sender', 'username').exec(function (err, result) {
+        Message.find({receiver: req.params.id})
+            .populate('sender', 'username')
+            .exec(function (err, result) {
             if (err) {
                 console.log('Messages could not be loaded: ' + err);
             }
@@ -43,7 +45,8 @@ module.exports = {
         })
     },
     getNewMessagesByReceiverId: function(req, res){
-        Message.find({receiver:req.params.id, isRead: false}).populate('sender', 'username')
+        Message.find({receiver:req.params.id, isRead: false})
+            .populate('sender', 'username')
             .exec(function(err, result){
                 if (err) {
                     console.log('Messages could not be loaded: ' + err);

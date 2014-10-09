@@ -8,8 +8,8 @@ module.exports = {
             body: req.body.body,
             title: req.body.title,
             date: new Date(),
-            sender: req.body.sender._id,
-            receiver: req.body.receiver._id
+            sender: req.body.sender,
+            receiver: req.body.receiver
         };
 
         var comment = new Comment(data);
@@ -39,8 +39,6 @@ module.exports = {
                 console.log('Comments could not be loaded: ' + err);
                 return;
             }
-
-            console.log(result);
 
             res.send(result);
         })

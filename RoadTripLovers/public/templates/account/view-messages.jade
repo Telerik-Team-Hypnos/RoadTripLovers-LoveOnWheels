@@ -2,14 +2,15 @@
     .modal-dialog
         .modal-content
             .modal-header
-                span Messages
                 button.close(data-dismiss="modal") x
+                h4 Messages
             .modal-body
                 .list-group#view-user-messages
                     .list-group-item(ng-repeat="message in logedUserMessages | orderBy: '-postTime'")
                         .lead Title: {{message.title}}
                         span by
-                        strong.list-group-item-heading  {{message.sender.username}}
+                        a(ng-click="goToUser(message.sender._id)")
+                            strong.list-group-item-heading  {{message.sender.username}}
                         span  on
                         span.text-muted  {{message.postTime | date: 'medium'}}
                         .list-group-item-text.alert.alert-warning {{message.body}}

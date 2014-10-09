@@ -4,6 +4,10 @@ appMain.controller('UserDetailsController',
     function ($scope, $location, $routeParams, AccountService, MessagesResource, TownsResource, CommentsResource, PhotosResource) {
 
         if ($routeParams.id !== undefined && AccountService.userData.isAuth === true) {
+            $scope.goToUser = function(id){
+                $('#view-messages-modal').modal('toggle');
+                $location.path('/user-details/' + id);
+            };
 
             $scope.newComment = {
                 body: ''
@@ -24,11 +28,13 @@ appMain.controller('UserDetailsController',
                 var data = {
                     body: $scope.newComment.body,
                     date: new Date(),
-                    sender: $scope.loggedUserId,
+                    sender:  AccountService.userData.userId,
                     receiver: $scope.currentUser._id
                 }
 
                 CommentsResource.addItem(data).then(function (success) {
+                    success.sender = {};
+                    success.sender.username = AccountService.userData.username;
                     $scope.comments.push(success);
                     $scope.newComment.body = '';
                 }, function (error) {
