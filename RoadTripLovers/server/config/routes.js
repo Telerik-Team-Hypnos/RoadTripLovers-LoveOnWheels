@@ -46,7 +46,11 @@ module.exports = function(app) {
 
     // Comments Requests
     app.get('/api/comments/:id', controllers.comments.getByReceiver);
-    app.post('/api/comments', controllers.comments.createItem)
+    app.post('/api/comments', controllers.comments.createItem);
+
+    // Photo Requests
+    app.post('/upload', auth.isAuthenticated, controllers.photos.upload);
+    app.get('/upload/:user', controllers.photos.getByUser);
 	
     app.get('/api/*', function(req, res) {
         res.status(404);

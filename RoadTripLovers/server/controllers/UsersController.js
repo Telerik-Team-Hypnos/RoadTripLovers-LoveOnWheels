@@ -51,7 +51,7 @@ module.exports = {
         })
     },
     getById: function(req, res, next) {
-        User.findOne({_id: req.params.id}).exec(function(err, result) {
+        User.findOne({_id: req.params.id}).populate("town").exec(function(err, result) {
             if (err) {
                 console.log('User could not be loaded: ' + err);
             }

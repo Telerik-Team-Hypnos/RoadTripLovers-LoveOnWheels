@@ -5,6 +5,7 @@ var express = require('express'),
     session = require('express-session'),
     favicon = require('serve-favicon'),
     methodOverride = require('method-override'),
+    busboy = require('connect-busboy');
     passport = require('passport');
 
 module.exports = function(app, config) {
@@ -12,6 +13,8 @@ module.exports = function(app, config) {
     app.set('views', config.rootPath + '/server/views');
 
     app.use(favicon(config.rootPath + '/public/content/img/favicon.png'));
+
+    app.use(busboy({ immediate: false }));
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));

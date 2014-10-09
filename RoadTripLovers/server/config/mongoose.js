@@ -6,6 +6,7 @@ var page = require('../models/Page');
 var trip = require('../models/Trip');
 var message = require('../models/Message');
 var comment = require('../models/Comment');
+var file = require('../models/Photo');
 
 module.exports = function(config) {
     mongoose.connect(config.db);

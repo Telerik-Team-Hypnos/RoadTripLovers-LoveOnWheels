@@ -16,7 +16,6 @@ var userSchema = mongoose.Schema({
         ref: 'Town'
     },
     sex: String,
-    profilePhoto: String,
     isTruckDriver: Boolean,
     salt: String,
     hashPass: String,
