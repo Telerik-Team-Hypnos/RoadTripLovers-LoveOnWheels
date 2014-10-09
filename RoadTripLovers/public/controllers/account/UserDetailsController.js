@@ -9,6 +9,7 @@ appMain.controller('UserDetailsController',
 				body: ''
 			};
 
+
 			$scope.postComment = function () {
 				var data = {
 					body: $scope.newComment.body,
@@ -48,6 +49,12 @@ appMain.controller('UserDetailsController',
                     $scope.loggedUserId = logedUserId;
                     $scope.isMyProfile = (currentUserId === logedUserId);
 
+                    $scope.loadOlderMessages = function(){
+                        MessagesResource.getByReceiverId(logedUserId).then(function(responce){
+                            $scope.logedUserMessages=responce;
+                        });
+                    }
+
 					//send message function
                     $scope.messages.sendMessage = function () {
                         //do some validation here
@@ -64,11 +71,11 @@ appMain.controller('UserDetailsController',
                         });
                     };
 
-					//load messages, if the details page is the one for the loged user
+					//load messages, if the details page is the one for the logged user
 					if($scope.isMyProfile)
 					{
 						MessagesResource.getNewByReceiverId(logedUserId).then(function(responce){
-                            console.log(responce);
+                            $scope.unreadCount = responce.length;
 							$scope.logedUserMessages=responce;	
 						});						
 					}

@@ -8,7 +8,7 @@ module.exports = {
         var data = {
             title: req.body.title,
             body: req.body.body,
-            isNew: true,
+            isRead: false,
             postTime: now,
             sender: req.body.sender,
             receiver: req.body.receiver

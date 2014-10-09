@@ -2,7 +2,8 @@
   margin-top: 1px;
 }
 #messages-box,
-#comments {
+#comments,
+#view-user-mesages {
   max-height: 350px;
   overflow: auto;
 }

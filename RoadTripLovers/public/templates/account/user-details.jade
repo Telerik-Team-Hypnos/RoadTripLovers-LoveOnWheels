@@ -11,7 +11,7 @@
 				a(href="") Photos
 			li.text-center
 				a(href="" ng-if="!isMyProfile" data-toggle="modal" data-target="#send-message-modal") Send Message
-				a(href="" ng-if="isMyProfile" data-toggle="modal" data-target="#view-messages-modal") Messages
+				a(href="" ng-if="isMyProfile" ng-click="unreadCount = 0" data-toggle="modal" data-target="#view-messages-modal") Messages({{unreadCount}})
 	include personal-info
 	include comments
 	#send-message-container(ng-if="!isMyProfile")
