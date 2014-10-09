@@ -6,16 +6,14 @@ module.exports = {
     upload: function(req, res, next) {
         req.pipe(req.busboy);
 
-        var files = [];
+        var myFile = {};
 
         req.busboy.on('file', function (fieldname, file, filename) {
             var url = req.user.username + "_" + filename;
+            var extension = filename.split(".")[1];
+            myFile.url = url;
 
-            files[fieldname] = files[fieldname] || {};
-            files[fieldname].fileName = filename;
-            files[fieldname].url = url;
-
-            var path = __dirname + '/../photos/' + url;
+            var path = __dirname + '/../../public/userimages/' + req.user.username + "." + extension;
 
             if (fs.existsSync(path)) {
                 fs.unlinkSync(path);
@@ -26,29 +24,28 @@ module.exports = {
         });
 
         req.busboy.on('finish', function() {
-            var count = 0;
-            for(var file in files) {
+            console.log(myFile);
+            Photo.remove({user: req.user._id}, function (err) {
                 new Photo({
-                    url: file.url,
+                    url: myFile.url,
                     user: req.user._id
                 })
-                .save(function() {
-                    count++;
-                    if (count == Object.keys(files).length) {
-                        res.end();
-                    }
-                });
-            };
+                    .save(function() {
+
+                        res.send(true);
+                    });
+            });
         });
     },
     getByUser: function(req, res, next) {
-        Photo.find({user: req.username._id}).exec(function(err, file) {
+        console.log(req.params.id);
+        Photo.findOne({user: req.params.id}).exec(function(err, result) {
             if (err){
                 console.log(err);
                 req.send(err)
             }
-
-            res.send(file.url);
+            console.log(result);
+            res.send(result.url);
         });
     }
 };

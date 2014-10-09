@@ -44,6 +44,7 @@ module.exports = {
         Town.findOne({_id: req.params.id}).populate("country").exec(function(err, result) {
             if (err) {
                 console.log('Item could not be loaded: ' + err);
+                res.end();
             }
 
             res.send(result);

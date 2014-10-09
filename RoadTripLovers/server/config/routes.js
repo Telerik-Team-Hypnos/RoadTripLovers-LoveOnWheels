@@ -50,7 +50,7 @@ module.exports = function(app) {
 
     // Photo Requests
     app.post('/api/images/upload', auth.isAuthenticated, controllers.photos.upload);
-    app.get('/api/images/:user', controllers.photos.getByUser);
+    app.get('/api/images/:id', controllers.photos.getByUser);
 	
     app.get('/api/*', function(req, res) {
         res.status(404);

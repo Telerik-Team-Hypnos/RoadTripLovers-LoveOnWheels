@@ -4,8 +4,8 @@
 	.list-group(ng-if="isMyProfile")
 		h3.list-group-item.active.text-center Upload a new photo
 		.list-group-item
-			form(ng-submit="photos.uploadPhoto()" enctype='multipart/form-data')
+			form(action="/api/images/upload" method="post" enctype='multipart/form-data')
 				.form-group
 					label Select a photo
-					input(type='file' name='new-photo' ng-model='photos.newPhoto')
+					input(type='file' name='new-photo')
 				button.btn.btn-primary Upload

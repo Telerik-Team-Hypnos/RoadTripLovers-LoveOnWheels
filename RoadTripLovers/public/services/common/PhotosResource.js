@@ -5,8 +5,8 @@ appMain.factory('PhotosResource', function ($q, httQ) {
 
     return {        
 		
-		uploadPhoto: function (data) {
-            return httQ.post(serviceUrl+'/upload', data);
+		getByUser: function (id) {
+            
         }
     };
 });
