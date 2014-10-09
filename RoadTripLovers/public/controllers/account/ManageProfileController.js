@@ -1,7 +1,8 @@
 'use strict';
 
 appMain.controller('ManageProfileController', function ($scope, $location, $routeParams, AccountService, TownsResource, TripsResource) {
-    $scope.sexTypes = ['Male', 'Female', 'Shemale','Hermaphrodite','Other']
+    $scope.sexTypes = ['Male', 'Female', 'Shemale','Hermaphrodite','Other'];
+    $scope.userData = AccountService.userData;
 
     AccountService.getById(AccountService.userData.userId)
         .then(function (response) {
@@ -22,7 +23,7 @@ appMain.controller('ManageProfileController', function ($scope, $location, $rout
     $scope.updateProfile = function () {
         AccountService.editUserProfile($scope.profileData)
             .then(function () {
-                $location.path("/")
+                $location.path("/profile")
             });
     }
 });
